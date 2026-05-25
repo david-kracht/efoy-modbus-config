@@ -1,0 +1,15 @@
+{# Advantech Modbus-to-MQTT CSV mapping template (APP-0087)               #}
+{# Columns A–T (20 fields) per row.  Custom fields Q-R and U-AB are       #}
+{# left as 0 — enable and populate them via the router app's web UI.      #}
+{#                                                                         #}
+{# Column layout:                                                          #}
+{#  A  Topic            G  Address           M  Multiplier                #}
+{#  B  Name             H  Data Length       N  Offset                    #}
+{#  C  IP Address       I  Modbus Data Type  O  Polling Interval (ms)     #}
+{#  D  Port             J  Data Swap         P  Send When Change          #}
+{#  E  Device ID        K  Byte Swap         Q  Custom1 Field (0)         #}
+{#  F  Function Code    L  MQTT Data Type    R  Custom2 Field (0)         #}
+{#                                           S  Send Group (0=disabled)   #}
+{#                                           T  Send Interval (s)         #}
+{% for row in rows %}{{ row.topic }},{{ row.name }},{{ row.ip }},{{ row.port }},{{ row.device_id }},{{ row.fc }},{{ row.address }},{{ row.data_length }},{{ row.modbus_dtype }},{{ row.data_swap }},{{ row.byte_swap }},{{ row.mqtt_dtype }},{{ row.multiplier }},{{ row.offset }},{{ row.polling_ms }},{{ row.send_when_change }},0,0,0,{{ row.send_interval }}
+{% endfor %}

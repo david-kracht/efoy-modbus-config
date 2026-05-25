@@ -1,0 +1,12 @@
+[project]
+name = "example-01-minimalmodbus"
+version = "0.1.0"
+description = "Read EFOY registers by name with MinimalModbus"
+requires-python = ">=3.11"
+dependencies = [
+    "efoy-modbus-config",
+    "minimalmodbus>=2.1.1",
+]
+
+[tool.uv.sources]
+efoy-modbus-config = { path = "../..", editable = true }
