@@ -32,8 +32,19 @@ logger = logging.getLogger(__name__)
 
 _GENERATE_DEPS = ("pdfplumber", "httpx", "dotenv")
 
-# Schemas live alongside this file: src/efoy_modbus/schemas/
-_SCHEMAS_DIR = Path(__file__).resolve().parent / "schemas"
+# Try to resolve relative to workspace first (dev mode)
+_workspace_schemas = None
+for p in Path(__file__).resolve().parents:
+    candidate = p / "packages/efoy-modbus/src/efoy_modbus/schemas"
+    if candidate.exists():
+        _workspace_schemas = candidate
+        break
+
+if _workspace_schemas:
+    _SCHEMAS_DIR = _workspace_schemas
+else:
+    # Fallback to local schemas directory
+    _SCHEMAS_DIR = Path.cwd() / "schemas"
 
 
 def _check_generate_deps() -> None:
@@ -82,8 +93,8 @@ def run_inspect(pdf_path: Path) -> None:
     import pdfplumber
     from collections import Counter
 
-    from efoy_modbus.extractor import extract_registers_raw
-    from efoy_modbus.normalizer import raw_entry_to_register
+    from modbus_schema_generator.extractor import extract_registers_raw
+    from modbus_schema_generator.normalizer import raw_entry_to_register
 
     bar = "=" * 72
     thin = "-" * 72
@@ -152,7 +163,7 @@ def run_inspect(pdf_path: Path) -> None:
         print(f"    {rtype:<25} {count}")
 
     print("\n  Sample registers (first 5 per type):")
-    from efoy_modbus.models import ModbusRegisterType
+    from modbus_schema_common.models import ModbusRegisterType
     for rtype in ModbusRegisterType:
         subset = [r for r in registers if r.register_type == rtype][:5]
         if not subset:
@@ -172,14 +183,14 @@ def run_inspect(pdf_path: Path) -> None:
 # ---------------------------------------------------------------------------
 
 def run_pipeline(pdf_path: Path, output_path: Path) -> None:
-    from efoy_modbus.config import DEVICE_NAME, PDF_URL, VERSION
-    from efoy_modbus.extractor import (
+    from modbus_schema_generator.config import DEVICE_NAME, PDF_URL, VERSION
+    from modbus_schema_generator.extractor import (
         extract_enum_type_definitions,
         extract_firmware_version,
         extract_registers_raw,
     )
-    from efoy_modbus.models import ModbusInterfaceSpecification
-    from efoy_modbus.normalizer import raw_entry_to_register
+    from modbus_schema_common.models import ModbusInterfaceSpecification
+    from modbus_schema_generator.normalizer import raw_entry_to_register
 
     firmware = extract_firmware_version(pdf_path)
     logger.info("Firmware version: %s", firmware or "(not found)")
@@ -260,9 +271,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    from efoy_modbus.config import OUTPUT_PATH as ENV_OUTPUT_PATH
-    from efoy_modbus.config import PDF_LOCAL_PATH, PDF_URL
-    from efoy_modbus.downloader import resolve_pdf
+    from modbus_schema_generator.config import OUTPUT_PATH as ENV_OUTPUT_PATH
+    from modbus_schema_generator.config import PDF_LOCAL_PATH, PDF_URL
+    from modbus_schema_generator.downloader import resolve_pdf
 
     pdf_path = args.pdf or resolve_pdf(PDF_URL, PDF_LOCAL_PATH)
     # Priority: 1) --output CLI arg  2) OUTPUT_PATH env var  3) auto-increment

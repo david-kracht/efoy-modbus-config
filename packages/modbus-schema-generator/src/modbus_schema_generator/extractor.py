@@ -369,7 +369,7 @@ def extract_enum_type_definitions(pdf_path: Path) -> list:
 
     Returns a list of EnumTypeDefinition objects (imported from models).
     """
-    from efoy_modbus.models import EnumTypeDefinition
+    from modbus_schema_common.models import EnumTypeDefinition
 
     lines: list[str] = []
     with pdfplumber.open(pdf_path) as pdf:

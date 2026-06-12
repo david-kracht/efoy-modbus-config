@@ -1,7 +1,7 @@
 import re
 
-from efoy_modbus.extractor import RawRegisterEntry
-from efoy_modbus.models import (
+from modbus_schema_generator.extractor import RawRegisterEntry
+from modbus_schema_common.models import (
     EnumTypeDefinition,
     ModbusDataType,
     ModbusRegister,
@@ -195,7 +195,7 @@ def raw_entry_to_register(
     Convert a RawRegisterEntry into a Pydantic register model.
 
     - Returns ModbusRegister    for Input Register and Holding Register
-      (word-level registers with unit / scale_factor metadata).
+      (word-level registers with unit metadata).
     - Returns ModbusRegisterBase for Discrete Input and Coil
       (bit-level registers without physical unit).
     - Returns None if the entry cannot be mapped to a valid register
@@ -244,7 +244,6 @@ def raw_entry_to_register(
         return ModbusRegister(
             **common,
             unit=unit_raw if unit_raw else None,
-            scale_factor=1.0,
             enum_values=enum_values,
         )
 

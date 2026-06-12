@@ -514,7 +514,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -527,7 +526,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -540,7 +538,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -553,7 +550,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -566,7 +562,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -579,7 +574,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -592,7 +586,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "W",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -605,7 +598,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "W",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -618,7 +610,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -631,7 +622,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "°C",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -644,7 +634,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Wh",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -657,7 +646,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -670,7 +658,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "None",
         "1": "System has been turned on manually",
@@ -689,7 +676,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "None",
         "1": "System has been turned off manually",
@@ -713,7 +699,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -726,7 +711,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -739,7 +723,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -752,7 +735,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -765,7 +747,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -778,7 +759,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -791,7 +771,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -804,7 +783,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -817,7 +795,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "off",
         "1": "standby",
@@ -846,7 +823,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "Automatic",
         "1": "off"
@@ -862,7 +838,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -875,7 +850,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -888,7 +862,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -901,7 +874,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -914,7 +886,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -927,7 +898,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -940,7 +910,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -953,7 +922,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -966,7 +934,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -979,7 +946,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -992,7 +958,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1005,7 +970,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1018,7 +982,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1031,7 +994,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1044,7 +1006,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1057,7 +1018,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1070,7 +1030,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1083,7 +1042,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1096,7 +1054,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1109,7 +1066,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1122,7 +1078,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1135,7 +1090,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1148,7 +1102,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1161,7 +1114,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1174,7 +1126,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "No Battery",
         "1": "Lead Acid 12V",
@@ -1194,7 +1145,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1207,7 +1157,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1220,7 +1169,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1233,7 +1181,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1246,7 +1193,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1259,7 +1205,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1272,7 +1217,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1285,7 +1229,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1298,7 +1241,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1311,7 +1253,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1324,7 +1265,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1337,7 +1277,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1350,7 +1289,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1363,7 +1301,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1376,7 +1313,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1389,7 +1325,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1402,7 +1337,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1415,7 +1349,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1428,7 +1361,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1441,7 +1373,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1454,7 +1385,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1467,7 +1397,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1480,7 +1409,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1493,7 +1421,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1506,7 +1433,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1519,7 +1445,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1532,7 +1457,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1545,7 +1469,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1558,7 +1481,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1571,7 +1493,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1584,7 +1505,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1597,7 +1517,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1610,7 +1529,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1623,7 +1541,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1636,7 +1553,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1649,7 +1565,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1662,7 +1577,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1675,7 +1589,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1688,7 +1601,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1701,7 +1613,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1714,7 +1625,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1727,7 +1637,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1740,7 +1649,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1753,7 +1661,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1766,7 +1673,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1779,7 +1685,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1792,7 +1697,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1805,7 +1709,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1818,7 +1721,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1839,7 +1741,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1852,7 +1753,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1865,7 +1765,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1878,7 +1777,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1891,7 +1789,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1912,7 +1809,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1933,7 +1829,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1954,7 +1849,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1975,7 +1869,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1996,7 +1889,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2017,7 +1909,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2038,7 +1929,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2059,7 +1949,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2072,7 +1961,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2085,7 +1973,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2098,7 +1985,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2111,7 +1997,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2124,7 +2009,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2137,7 +2021,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2150,7 +2033,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2163,7 +2045,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2176,7 +2057,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2189,7 +2069,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2202,7 +2081,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2215,7 +2093,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2228,7 +2105,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2241,7 +2117,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2254,7 +2129,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2267,7 +2141,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2280,7 +2153,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "No Battery",
         "1": "Lead Acid 12V",
@@ -2300,7 +2172,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2313,7 +2184,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2326,7 +2196,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2339,7 +2208,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2352,7 +2220,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2365,7 +2232,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2378,7 +2244,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2391,7 +2256,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2404,7 +2268,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2417,7 +2280,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2430,7 +2292,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2443,7 +2304,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2456,7 +2316,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2477,7 +2336,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2490,7 +2348,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2503,7 +2360,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2524,7 +2380,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2537,7 +2392,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2550,7 +2404,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2571,7 +2424,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2584,7 +2436,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2597,7 +2448,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2618,7 +2468,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2631,7 +2480,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2644,7 +2492,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2665,7 +2512,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2678,7 +2524,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2691,7 +2536,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2712,7 +2556,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2725,7 +2568,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2738,7 +2580,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2759,7 +2600,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2772,7 +2612,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2785,7 +2624,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2806,7 +2644,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2819,7 +2656,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2832,7 +2668,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2853,7 +2688,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2866,7 +2700,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     }
   ],

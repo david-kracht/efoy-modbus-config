@@ -2,6 +2,13 @@ version = 1
 revision = 3
 requires-python = ">=3.11"
 
+[manifest]
+members = [
+    "modbus-config",
+    "modbus-schema-common",
+    "modbus-schema-generator",
+]
+
 [[package]]
 name = "annotated-types"
 version = "0.7.0"
@@ -252,30 +259,6 @@ wheels = [
 ]
 
 [[package]]
-name = "efoy-modbus-config"
-version = "1.0.0"
-source = { editable = "." }
-dependencies = [
-    { name = "pydantic" },
-]
-
-[package.optional-dependencies]
-generate = [
-    { name = "httpx" },
-    { name = "pdfplumber" },
-    { name = "python-dotenv" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "httpx", marker = "extra == 'generate'", specifier = ">=0.27.0" },
-    { name = "pdfplumber", marker = "extra == 'generate'", specifier = ">=0.11.0" },
-    { name = "pydantic", specifier = ">=2.0.0" },
-    { name = "python-dotenv", marker = "extra == 'generate'", specifier = ">=1.0.0" },
-]
-provides-extras = ["generate"]
-
-[[package]]
 name = "h11"
 version = "0.16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -319,6 +302,47 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/1a/88/bcf9709822fe69d02c2a6a77956c98ce6ea8ca8767a9aadcedc7eb6a2390/idna-3.16.tar.gz", hash = "sha256:d7a6da03db833450fca25d2358ac9ff06cd624577a4aea3a596d5c0f77b8e03d", size = 203770, upload-time = "2026-05-22T00:16:18.781Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/94/16/70255075a9859a0e3adb789b68ceb0e210dec03934245fd98d248226572f/idna-3.16-py3-none-any.whl", hash = "sha256:cc246e3a3f89580c3a951b5ad298ca4638078b2cdd4f115654332b5c26daded5", size = 74165, upload-time = "2026-05-22T00:16:16.698Z" },
+]
+
+[[package]]
+name = "modbus-config"
+version = "1.1.0"
+source = { editable = "packages/modbus-config" }
+dependencies = [
+    { name = "modbus-schema-common" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "modbus-schema-common", editable = "packages/modbus-schema-common" }]
+
+[[package]]
+name = "modbus-schema-common"
+version = "1.0.0"
+source = { editable = "packages/modbus-schema-common" }
+dependencies = [
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pydantic", specifier = ">=2.0.0" }]
+
+[[package]]
+name = "modbus-schema-generator"
+version = "1.0.0"
+source = { editable = "packages/modbus-schema-generator" }
+dependencies = [
+    { name = "httpx" },
+    { name = "modbus-schema-common" },
+    { name = "pdfplumber" },
+    { name = "python-dotenv" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "httpx", specifier = ">=0.27.0" },
+    { name = "modbus-schema-common", editable = "packages/modbus-schema-common" },
+    { name = "pdfplumber", specifier = ">=0.11.0" },
+    { name = "python-dotenv", specifier = ">=1.0.0" },
 ]
 
 [[package]]

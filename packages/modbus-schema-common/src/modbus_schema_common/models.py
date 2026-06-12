@@ -24,11 +24,11 @@ class ModbusDataType(str, Enum):
 class ModbusRegisterBase(BaseModel):
     """
     Base register — used for 1-bit registers (Discrete Input, Coil).
-    No physical unit or scale factor applies to bit-level values.
+    No physical unit applies to bit-level values.
     """
     address_hex: str
     address_dec: int
-    name: str                               # Original PascalCase name from the PDF
+    name: str                               # Original PascalCase name
     description: str
     data_type: ModbusDataType
     register_count: int
@@ -39,18 +39,15 @@ class ModbusRegisterBase(BaseModel):
 class ModbusRegister(ModbusRegisterBase):
     """
     Word register — used for Input Register and Holding Register.
-    Extends the base class with physical unit and scaling metadata.
+    Extends the base class with physical unit and optional enum value mapping.
     """
     unit: Optional[str] = None
-    scale_factor: float = 1.0
-    enum_values: Optional[dict[int, str]] = None  # set when type column contains 'enum'
+    enum_values: Optional[dict[int, str]] = None  # set when type contains 'enum'
 
 
 class EnumTypeDefinition(BaseModel):
     """
-    Named enum type defined in sections 1.5–1.8 of the PDF.
-    Registers whose description references 'chapter 1.X' are linked at
-    pipeline time by populating ModbusRegister.enum_values from here.
+    Named enum type defined in spec sheets.
     """
     chapter: str            # e.g. "1.5", "1.7"
     name: str               # e.g. "SystemState", "BatteryType"
@@ -60,8 +57,8 @@ class EnumTypeDefinition(BaseModel):
 class ModbusInterfaceSpecification(BaseModel):
     device_name: str
     version: str
-    source_url: Optional[str] = None        # URL the PDF was originally downloaded from
-    firmware: Optional[str] = None          # firmware version extracted from the PDF text
+    source_url: Optional[str] = None        # URL the spec sheet was originally downloaded from
+    firmware: Optional[str] = None          # firmware version extracted from the spec sheet
     # Union order matters for Pydantic v2 serialization: ModbusRegister (richer)
     # must be listed first so its extra fields are preserved.
     registers: list[ModbusRegister | ModbusRegisterBase] = Field(default_factory=list)

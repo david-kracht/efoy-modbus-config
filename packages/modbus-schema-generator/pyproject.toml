@@ -1,0 +1,22 @@
+[project]
+name = "modbus-schema-generator"
+version = "1.0.0"
+description = "CLI tool to generate generic Modbus TCP schemas from PDF datasheets"
+requires-python = ">=3.11"
+dependencies = [
+    "modbus-schema-common",
+    "httpx>=0.27.0",
+    "pdfplumber>=0.11.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+modbus-schema-generate = "modbus_schema_generator._cli:main"
+efoy-generate = "modbus_schema_generator._cli:main"
+
+[tool.uv.sources]
+modbus-schema-common = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

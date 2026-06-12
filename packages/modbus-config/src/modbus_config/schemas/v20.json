@@ -1,8 +1,8 @@
 {
   "device_name": "EFOY Fuel Cell",
-  "version": "23.07",
+  "version": "25.09",
   "source_url": "26_02_Modbus_TCP.pdf",
-  "firmware": "24.14.284",
+  "firmware": "24.15.303",
   "registers": [
     {
       "address_hex": "0x1",
@@ -259,6 +259,86 @@
       "address_dec": 39,
       "name": "UnlockTLP",
       "description": "Unlock the system when it is in transport lock mode.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "WO",
+      "register_type": "coil"
+    },
+    {
+      "address_hex": "0x28",
+      "address_dec": 40,
+      "name": "MSDio1OutputHigh",
+      "description": "Set output value of MS digital port 1 to high",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "WO",
+      "register_type": "coil"
+    },
+    {
+      "address_hex": "0x29",
+      "address_dec": 41,
+      "name": "MSDio1OutputLow",
+      "description": "Set output value of MS digital port 1 to low",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "WO",
+      "register_type": "coil"
+    },
+    {
+      "address_hex": "0x2a",
+      "address_dec": 42,
+      "name": "MSDio2OutputHigh",
+      "description": "Set output value of MS digital port 2 to high",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "WO",
+      "register_type": "coil"
+    },
+    {
+      "address_hex": "0x2b",
+      "address_dec": 43,
+      "name": "MSDio2OutputLow",
+      "description": "Set output value of MS digital port 2 to low",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "WO",
+      "register_type": "coil"
+    },
+    {
+      "address_hex": "0x2c",
+      "address_dec": 44,
+      "name": "MSDio3OutputHigh",
+      "description": "Set output value of MS digital port 3 to high",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "WO",
+      "register_type": "coil"
+    },
+    {
+      "address_hex": "0x2d",
+      "address_dec": 45,
+      "name": "MSDio3OutputLow",
+      "description": "Set output value of MS digital port 3 to low",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "WO",
+      "register_type": "coil"
+    },
+    {
+      "address_hex": "0x2e",
+      "address_dec": 46,
+      "name": "MSDio4OutputHigh",
+      "description": "Set output value of MS digital port 4 to high",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "WO",
+      "register_type": "coil"
+    },
+    {
+      "address_hex": "0x2f",
+      "address_dec": 47,
+      "name": "MSDio4OutputLow",
+      "description": "Set output value of MS digital port 4 to low",
       "data_type": "bit",
       "register_count": 1,
       "access": "WO",
@@ -525,6 +605,336 @@
       "register_type": "discrete_input"
     },
     {
+      "address_hex": "0x2736",
+      "address_dec": 10038,
+      "name": "MSAvailable",
+      "description": "MultiSense is available 0 = no MultiSense connected or not ready for use 1 = MultiSense is connected and it is ready to use",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2737",
+      "address_dec": 10039,
+      "name": "MSTemperature1Enable",
+      "description": "MS Temperature 1 is enabled. 0 = disabled 1 = enabled",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2738",
+      "address_dec": 10040,
+      "name": "MSTemperature2Enable",
+      "description": "MS temperature 2 is enabled.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2739",
+      "address_dec": 10041,
+      "name": "MSAnalog1Enable",
+      "description": "MS analog 1 is enabled.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x273a",
+      "address_dec": 10042,
+      "name": "MSAnalog2Enable",
+      "description": "MS analog 2 is enabled.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x273b",
+      "address_dec": 10043,
+      "name": "MSDio1Enable",
+      "description": "MS digital 1 is enabled.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x273c",
+      "address_dec": 10044,
+      "name": "MSDio1Direction",
+      "description": "MS digital 1 configured direction 0 = Input 1 = Output",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x273d",
+      "address_dec": 10045,
+      "name": "MSDio1Invert",
+      "description": "MS digital 1 logic 0 = regular 1 = inverted",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x273e",
+      "address_dec": 10046,
+      "name": "MSDio1PowerOn",
+      "description": "MS digital 1 logic level after power on",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x273f",
+      "address_dec": 10047,
+      "name": "MSDio1EmergencyInUse",
+      "description": "MS digital 1 emergency mode is in use 0 = Not used 1 = Used It indicates whether the port will switch to the state defined by the value of MSDio1Emergency in case of an error.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2740",
+      "address_dec": 10048,
+      "name": "MSDio1Emergency",
+      "description": "MS digital 1 logic level after emergency",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2741",
+      "address_dec": 10049,
+      "name": "MSDio2Enable",
+      "description": "MS digital 2 is enabled.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2742",
+      "address_dec": 10050,
+      "name": "MSDio2Direction",
+      "description": "MS digital 2 configured direction 0 = Input 1 = Output",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2743",
+      "address_dec": 10051,
+      "name": "MSDio2Invert",
+      "description": "MS digital 2 logic 0 = regular 1 = inverted",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2744",
+      "address_dec": 10052,
+      "name": "MSDio2PowerOn",
+      "description": "MS digital 2 logic level after power on",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2745",
+      "address_dec": 10053,
+      "name": "MSDio2EmergencyInUse",
+      "description": "MS digital 2 emergency mode is in use 0 = Not used 1 = Used It indicates whether the port will switch to the state defined by the value of MSDio1Emergency in case of an error.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2746",
+      "address_dec": 10054,
+      "name": "MSDio2Emergency",
+      "description": "MS digital 2 logic level after emergency",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2747",
+      "address_dec": 10055,
+      "name": "MSDio3Enable",
+      "description": "MS digital 3 is enabled.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2748",
+      "address_dec": 10056,
+      "name": "MSDio3Direction",
+      "description": "MS digital 3 configured direction 0 = Input 1 = Output",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2749",
+      "address_dec": 10057,
+      "name": "MSDio3Invert",
+      "description": "MS digital 3 logic 0 = regular 1 = inverted",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x274a",
+      "address_dec": 10058,
+      "name": "MSDio3PowerOn",
+      "description": "MS digital 3 logic level after power on",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x274b",
+      "address_dec": 10059,
+      "name": "MSDio3EmergencyInUse",
+      "description": "MS digital 3 emergency mode is in use 0 = Not used 1 = Used It indicates whether the port will switch to the state defined by the value of MSDio1Emergency in case of an error.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x274c",
+      "address_dec": 10060,
+      "name": "MSDio3Emergency",
+      "description": "MS digital 3 logic level after emergency",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x274d",
+      "address_dec": 10061,
+      "name": "MSDio4Enable",
+      "description": "MS digital 4 is enabled.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x274e",
+      "address_dec": 10062,
+      "name": "MSDio4Direction",
+      "description": "MS digital 4 configured direction 0 = Input 1 = Output",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x274f",
+      "address_dec": 10063,
+      "name": "MSDio4Invert",
+      "description": "MS digital 4 logic 0 = regular 1 = inverted",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2750",
+      "address_dec": 10064,
+      "name": "MSDio4PowerOn",
+      "description": "MS digital 4 logic level after power on",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2751",
+      "address_dec": 10065,
+      "name": "MSDio4EmergencyInUse",
+      "description": "MS digital 4 emergency mode is in use 0 = Not used 1 = Used It indicates whether the port will switch to the state defined by the value of MSDio1Emergency in case of an error.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2752",
+      "address_dec": 10066,
+      "name": "MSDio4Emergency",
+      "description": "MS digital 4 logic level after emergency",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2753",
+      "address_dec": 10067,
+      "name": "MSDio1Value",
+      "description": "Current logical value of MS digital 1.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2754",
+      "address_dec": 10068,
+      "name": "MSDio2Value",
+      "description": "Current logical value of MS digital 2.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2755",
+      "address_dec": 10069,
+      "name": "MSDio3Value",
+      "description": "Current logical value of MS digital 3.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
+      "address_hex": "0x2756",
+      "address_dec": 10070,
+      "name": "MSDio4Value",
+      "description": "Current logical value of MS digital 4.",
+      "data_type": "bit",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "discrete_input"
+    },
+    {
       "address_hex": "0x7531",
       "address_dec": 30001,
       "name": "SystemType",
@@ -534,7 +944,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -547,7 +956,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -560,7 +968,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -573,7 +980,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -586,7 +992,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -599,7 +1004,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -612,7 +1016,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "W",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -625,7 +1028,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "W",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -638,7 +1040,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -651,7 +1052,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "°C",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -664,7 +1064,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Wh",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -677,7 +1076,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -690,7 +1088,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "None",
         "1": "System has been turned on manually",
@@ -709,7 +1106,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "None",
         "1": "System has been turned off manually",
@@ -718,7 +1114,7 @@
         "4": "The system has turned off automatically because an overvoltage at the output was detected",
         "5": "The system has turned off because frost protection mode has finished",
         "6": "The system has turned off because the fuel cartridge has depleted",
-        "7": "The system has turned off because methanol in reservoir and tubes is depleted for UN3363 requirement",
+        "7": "The system has turned off because methanol in reservoir and tubes is depleted for UN3363",
         "8": "The system has turned off because an error has occurred",
         "9": "The system was reset"
       }
@@ -733,7 +1129,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -746,7 +1141,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -759,7 +1153,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -772,7 +1165,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -785,7 +1177,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -798,7 +1189,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -811,7 +1201,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -824,7 +1213,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -837,7 +1225,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "off",
         "1": "standby",
@@ -866,7 +1253,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "Automatic",
         "1": "off"
@@ -882,7 +1268,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -895,7 +1280,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -908,7 +1292,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -921,7 +1304,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -934,7 +1316,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -947,7 +1328,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -960,7 +1340,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -973,7 +1352,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -986,7 +1364,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -999,7 +1376,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1012,7 +1388,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1025,7 +1400,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1038,7 +1412,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1051,7 +1424,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1064,7 +1436,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1077,7 +1448,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1090,7 +1460,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1103,7 +1472,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1116,7 +1484,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1129,7 +1496,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1142,7 +1508,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1155,7 +1520,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1168,7 +1532,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1181,7 +1544,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1194,7 +1556,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "No Battery",
         "1": "Lead Acid 12V",
@@ -1214,7 +1575,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1227,7 +1587,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1240,7 +1599,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1253,7 +1611,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1266,7 +1623,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1279,7 +1635,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1292,7 +1647,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1305,7 +1659,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1318,7 +1671,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1331,7 +1683,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1344,7 +1695,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1357,7 +1707,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1370,7 +1719,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1383,7 +1731,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1396,7 +1743,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1409,7 +1755,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1422,7 +1767,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1435,7 +1779,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1448,7 +1791,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1461,7 +1803,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1474,7 +1815,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1487,7 +1827,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1500,7 +1839,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1513,7 +1851,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1526,7 +1863,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1539,7 +1875,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1552,7 +1887,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1565,7 +1899,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1578,7 +1911,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1591,7 +1923,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1604,7 +1935,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1617,7 +1947,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1630,7 +1959,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1643,7 +1971,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1656,7 +1983,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1669,7 +1995,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1682,7 +2007,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1695,7 +2019,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1708,7 +2031,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1721,7 +2043,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1734,7 +2055,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1747,7 +2067,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1760,7 +2079,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1773,7 +2091,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1786,7 +2103,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1799,7 +2115,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1812,7 +2127,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1825,7 +2139,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1838,7 +2151,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1859,7 +2171,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1872,7 +2183,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1885,7 +2195,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1898,7 +2207,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -1911,7 +2219,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1932,7 +2239,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1953,7 +2259,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1974,7 +2279,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -1995,7 +2299,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2016,7 +2319,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2037,7 +2339,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2058,7 +2359,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -2079,7 +2379,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2092,7 +2391,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2105,7 +2403,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2118,7 +2415,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2131,7 +2427,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2144,7 +2439,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2157,7 +2451,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2170,7 +2463,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2183,7 +2475,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2196,7 +2487,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2209,7 +2499,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2222,7 +2511,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2235,7 +2523,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2248,7 +2535,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2261,7 +2547,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2274,7 +2559,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2287,7 +2571,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2300,7 +2583,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2313,7 +2595,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2326,7 +2607,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2339,7 +2619,18 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x763f",
+      "address_dec": 30271,
+      "name": "LogStackOpTime",
+      "description": "Stack Operating Time in hours",
+      "data_type": "float32",
+      "register_count": 2,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "h",
       "enum_values": null
     },
     {
@@ -2352,7 +2643,18 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "A",
-      "scale_factor": 1.0,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7643",
+      "address_dec": 30275,
+      "name": "LogUOut",
+      "description": "Output Voltage in V",
+      "data_type": "float32",
+      "register_count": 2,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "V",
       "enum_values": null
     },
     {
@@ -2365,7 +2667,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2378,7 +2679,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2391,7 +2691,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2404,7 +2703,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2417,7 +2715,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2430,7 +2727,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2443,7 +2739,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "°C",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2456,7 +2751,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "°C",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2469,7 +2763,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "°C",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2482,7 +2775,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "hPa",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2495,7 +2787,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "hPa",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2508,7 +2799,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2521,7 +2811,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2534,7 +2823,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "μl",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2547,7 +2835,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2560,7 +2847,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2573,7 +2859,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2586,7 +2871,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2599,7 +2883,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2612,7 +2895,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "idle",
         "1": "start phase",
@@ -2629,7 +2911,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2642,7 +2923,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2655,7 +2935,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2668,7 +2947,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2681,7 +2959,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "°C",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2694,7 +2971,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": "°C",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2707,7 +2983,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2720,7 +2995,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2733,7 +3007,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2746,7 +3019,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2759,7 +3031,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2772,7 +3043,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2785,7 +3055,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2798,7 +3067,6 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2811,7 +3079,545 @@
       "access": "RO",
       "register_type": "input_register",
       "unit": null,
-      "scale_factor": 1.0,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7682",
+      "address_dec": 30338,
+      "name": "MSVariant",
+      "description": "The connected MultiSense variant. 0 = Unknown or No MultiSense 1 = MultiSense MS4 2 = MultiSense MS8",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": {
+        "0": "Unknown or No MultiSense",
+        "1": "MultiSense MS4",
+        "2": "MultiSense MS8"
+      }
+    },
+    {
+      "address_hex": "0x7683",
+      "address_dec": 30339,
+      "name": "MSTemperature1Label",
+      "description": "Current configured label of tempera-ture 1. 0 = Not configured 1 = Custom 2 = Battery 3 = Ambient 4 = Outdoor 5 = Indoor 5 = Cartridge",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": {
+        "0": "Not configured",
+        "1": "Custom",
+        "2": "Battery",
+        "3": "Ambient",
+        "4": "Outdoor",
+        "5": "Cartridge"
+      }
+    },
+    {
+      "address_hex": "0x7684",
+      "address_dec": 30340,
+      "name": "MSTemperature2Label",
+      "description": "Current configured label of tempera-ture 2. See MSTemperature1Label.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7685",
+      "address_dec": 30341,
+      "name": "MSAnalog1Label",
+      "description": "Current configured label of analog 1. 0 = Not configured 1 = Custom 2 = Solar 3 = Battery 4 = Load 5 = EFOY",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": {
+        "0": "Not configured",
+        "1": "Custom",
+        "2": "Solar",
+        "3": "Battery",
+        "4": "Load",
+        "5": "EFOY"
+      }
+    },
+    {
+      "address_hex": "0x7686",
+      "address_dec": 30342,
+      "name": "MSAnalog1Sensor",
+      "description": "Current configured sensor of analog 1. 0 = Custom 1 = Current sensor 150A 2 = Current sensor 50A 3 = Current sensor 10A",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": {
+        "0": "Custom",
+        "1": "Current sensor 150A",
+        "2": "Current sensor 50A",
+        "3": "Current sensor 10A"
+      }
+    },
+    {
+      "address_hex": "0x7687",
+      "address_dec": 30343,
+      "name": "MSAnalog1Unit",
+      "description": "Current configured unit of analog 1. Volt: Directly measured at the analog input. Ampere: Measured voltage is converted to ampere, depending on the configured sensor type. Watt: Power is computed from battery volt-age and measured current, depending on the 0 = V 1 = A 2 = W",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": {
+        "0": "V",
+        "1": "A",
+        "2": "W"
+      }
+    },
+    {
+      "address_hex": "0x7688",
+      "address_dec": 30344,
+      "name": "MSAnalog2Label",
+      "description": "Current configured label of analog 2. See MSAnalog1Label",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7689",
+      "address_dec": 30345,
+      "name": "MSAnalog2Sensor",
+      "description": "Current configured sensor of analog 2. See MSAnalog1Sensor",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x768a",
+      "address_dec": 30346,
+      "name": "MSAnalog2Unit",
+      "description": "Current configured unit of analog 2. See MSAnalog1Unit",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x768b",
+      "address_dec": 30347,
+      "name": "MSDio1Label",
+      "description": "Current configured label of digital 1. 0 = Not configured 1 = Custom 2 = Door 3 = EFOY fuel sensor 4 = Fan 5 = Light 6 = Relay",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": {
+        "0": "Not configured",
+        "1": "Custom",
+        "2": "Door",
+        "3": "EFOY fuel sensor",
+        "4": "Fan",
+        "5": "Light",
+        "6": "Relay"
+      }
+    },
+    {
+      "address_hex": "0x768c",
+      "address_dec": 30348,
+      "name": "MSDio1Current",
+      "description": "Maximum configured output current of digital port 1.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "mA",
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x768d",
+      "address_dec": 30349,
+      "name": "MSDio2Label",
+      "description": "Maximum configured output current of digital port 2.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x768e",
+      "address_dec": 30350,
+      "name": "MSDio2Current",
+      "description": "Current configured label of digital 4. See MSDio1Label",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "mA",
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x768f",
+      "address_dec": 30351,
+      "name": "MSDio3Label",
+      "description": "Current configured label of digital 3. See MSDio1Label",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7690",
+      "address_dec": 30352,
+      "name": "MSDio3Current",
+      "description": "Maximum configured output current of digital port 3.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "mA",
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7691",
+      "address_dec": 30353,
+      "name": "MSDio4Label",
+      "description": "Current configured label of digital 4. See MSDio1Label",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7692",
+      "address_dec": 30354,
+      "name": "MSDio4Current",
+      "description": "Maximum configured output current of digital port 4.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "mA",
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7693",
+      "address_dec": 30355,
+      "name": "MSTemperature1Value",
+      "description": "Current value of MS temperature 1.",
+      "data_type": "float32",
+      "register_count": 2,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "°C",
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7695",
+      "address_dec": 30357,
+      "name": "MSTemperature2Value",
+      "description": "Current value of MS temperature 2.",
+      "data_type": "float32",
+      "register_count": 2,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "°C",
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7697",
+      "address_dec": 30359,
+      "name": "MSAnalog1Value",
+      "description": "Current value of MS analog 1, the unit is given by the associated register MSAnalog1Unit.",
+      "data_type": "float32",
+      "register_count": 2,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x7699",
+      "address_dec": 30361,
+      "name": "MSAnalog2Value",
+      "description": "Current value of MS analog 2, the unit is given by the associated register MSAnalog2Unit.",
+      "data_type": "float32",
+      "register_count": 2,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x769b",
+      "address_dec": 30363,
+      "name": "MSUSupply",
+      "description": "Current value of MS supply voltage in V.",
+      "data_type": "float32",
+      "register_count": 2,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": "V",
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x769d",
+      "address_dec": 30365,
+      "name": "MSGeneralErrorMajor",
+      "description": "Major number of the current MS general error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x769e",
+      "address_dec": 30366,
+      "name": "MSGeneralErrorMinor",
+      "description": "Minor number of the current MS general error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x769f",
+      "address_dec": 30367,
+      "name": "MSGeneralWarningMajor",
+      "description": "Major number of the current MS general warning code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a0",
+      "address_dec": 30368,
+      "name": "MSGeneralWarningMinor",
+      "description": "Minor number of the current MS general warning code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a1",
+      "address_dec": 30369,
+      "name": "MSTemperature1ErrorMajor",
+      "description": "Major number of the current MS temperature port 1 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a2",
+      "address_dec": 30370,
+      "name": "MSTemperature1ErrorMinor",
+      "description": "Minor number of the current MS temperature port 1 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a3",
+      "address_dec": 30371,
+      "name": "MSTemperature2ErrorMajor",
+      "description": "Major number of the current MS temperature port 2 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a4",
+      "address_dec": 30372,
+      "name": "MSTemperature2ErrorMinor",
+      "description": "Minor number of the current MS temperature port 2 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a5",
+      "address_dec": 30373,
+      "name": "MSAnalog1ErrorMajor",
+      "description": "Major number of the current MS analog port 1 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a6",
+      "address_dec": 30374,
+      "name": "MSAnalog1ErrorMinor",
+      "description": "Minor number of the current MS analog port 1 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a7",
+      "address_dec": 30375,
+      "name": "MSAnalog2ErrorMajor",
+      "description": "Major number of the current MS analog port 2 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a8",
+      "address_dec": 30376,
+      "name": "MSAnalog2ErrorMinor",
+      "description": "Minor number of the current MS analog port 2 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76a9",
+      "address_dec": 30377,
+      "name": "MSDio1ErrorMajor",
+      "description": "Major number of the current MS digital port 1 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76aa",
+      "address_dec": 30378,
+      "name": "MSDio1ErrorMinor",
+      "description": "Minor number of the current MS digital port 1 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76ab",
+      "address_dec": 30379,
+      "name": "MSDio2ErrorMajor",
+      "description": "Major number of the current MS digital port 2 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76ac",
+      "address_dec": 30380,
+      "name": "MSDio2ErrorMinor",
+      "description": "Minor number of the current MS digital port 2 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76ad",
+      "address_dec": 30381,
+      "name": "MSDio3ErrorMajor",
+      "description": "Major number of the current MS digital port 3 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76ae",
+      "address_dec": 30382,
+      "name": "MSDio3ErrorMinor",
+      "description": "Minor number of the current MS digital port 3 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76af",
+      "address_dec": 30383,
+      "name": "MSDio4ErrorMajor",
+      "description": "Major number of the current MS digital port 4 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x76b0",
+      "address_dec": 30384,
+      "name": "MSDio4ErrorMinor",
+      "description": "Minor number of the current MS digital port 4 error code.",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RO",
+      "register_type": "input_register",
+      "unit": null,
       "enum_values": null
     },
     {
@@ -2824,7 +3630,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "No Battery",
         "1": "Lead Acid 12V",
@@ -2844,7 +3649,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2857,7 +3661,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2870,7 +3673,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "A",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2883,7 +3685,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "Ah",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2896,7 +3697,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2909,7 +3709,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "h",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2922,7 +3721,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "min",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2935,7 +3733,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "sec",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2948,7 +3745,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2961,7 +3757,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2974,7 +3769,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -2987,7 +3781,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "V",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3000,7 +3793,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3021,7 +3813,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3034,7 +3825,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3047,7 +3837,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3068,7 +3857,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3081,7 +3869,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3094,7 +3881,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3115,7 +3901,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3128,7 +3913,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3141,7 +3925,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3162,7 +3945,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3175,7 +3957,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3188,7 +3969,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3209,7 +3989,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3222,7 +4001,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3235,7 +4013,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3256,7 +4033,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3269,7 +4045,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3282,7 +4057,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3303,7 +4077,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3316,7 +4089,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3329,7 +4101,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3350,7 +4121,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3363,7 +4133,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3376,7 +4145,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": {
         "0": "unspecified",
         "1": "fuel container with custom capacity",
@@ -3397,7 +4165,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "l",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3410,7 +4177,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": "%",
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3423,7 +4189,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3436,7 +4201,6 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
       "enum_values": null
     },
     {
@@ -3449,7 +4213,18 @@
       "access": "RW",
       "register_type": "holding_register",
       "unit": null,
-      "scale_factor": 1.0,
+      "enum_values": null
+    },
+    {
+      "address_hex": "0x9c96",
+      "address_dec": 40086,
+      "name": "FMSelectPortInUse",
+      "description": "Select port in use of the fuel manager (FM2 und FM4)",
+      "data_type": "uint16",
+      "register_count": 1,
+      "access": "RW",
+      "register_type": "holding_register",
+      "unit": null,
       "enum_values": null
     }
   ],
@@ -3505,7 +4280,7 @@
         "4": "The system has turned off automatically because an overvoltage at the output was detected",
         "5": "The system has turned off because frost protection mode has finished",
         "6": "The system has turned off because the fuel cartridge has depleted",
-        "7": "The system has turned off because methanol in reservoir and tubes is depleted for UN3363",
+        "7": "The system has turned off because methanol in reservoir and tubes is depleted for transportation mode",
         "8": "The system has turned off because an error has occurred",
         "9": "The system was reset"
       }
