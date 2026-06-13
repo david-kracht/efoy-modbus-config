@@ -4,7 +4,7 @@ version = "1.0.0"
 description = "CLI tool to generate generic Modbus TCP schemas from PDF datasheets"
 requires-python = ">=3.11"
 dependencies = [
-    "modbus-schema-common",
+    "modbus-schema-common>=1.0.0",
     "httpx>=0.27.0",
     "pdfplumber>=0.11.0",
     "python-dotenv>=1.0.0",
@@ -15,6 +15,9 @@ modbus-schema-generate = "modbus_schema_generator._cli:main"
 efoy-generate = "modbus_schema_generator._cli:main"
 
 [tool.uv.sources]
+# === REGISTRY SWITCH ===
+# Development: Sibling packages resolve locally from the workspace paths.
+# Production Release: Comment out the lines in [tool.uv.sources] below to resolve published versions from PyPI registry.
 modbus-schema-common = { workspace = true }
 
 [build-system]

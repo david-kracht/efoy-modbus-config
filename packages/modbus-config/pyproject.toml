@@ -4,10 +4,13 @@ version = "1.1.0"
 description = "EFOY Fuel Cell specific Modbus schemas"
 requires-python = ">=3.11"
 dependencies = [
-    "modbus-schema-common",
+    "modbus-schema-common>=1.0.0",
 ]
 
 [tool.uv.sources]
+# === REGISTRY SWITCH ===
+# Development: Sibling packages resolve locally from the workspace paths.
+# Production Release: Comment out the lines in [tool.uv.sources] below to resolve published versions from PyPI registry.
 modbus-schema-common = { workspace = true }
 
 [build-system]

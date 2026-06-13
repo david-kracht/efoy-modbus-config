@@ -54,11 +54,24 @@ class EnumTypeDefinition(BaseModel):
     values: dict[int, str]  # numeric code → human-readable label
 
 
+class Endianness(str, Enum):
+    BIG = "big"
+    LITTLE = "little"
+
+
 class ModbusInterfaceSpecification(BaseModel):
     device_name: str
     version: str
     source_url: Optional[str] = None        # URL the spec sheet was originally downloaded from
     firmware: Optional[str] = None          # firmware version extracted from the spec sheet
+    byte_order: Endianness = Field(
+        default=Endianness.BIG,
+        description="Byte order within a 16-bit word (big = MSB first, little = LSB first)"
+    )
+    word_order: Endianness = Field(
+        default=Endianness.LITTLE,
+        description="Word order for multi-word values (big = MSW first, little = LSW first)"
+    )
     # Union order matters for Pydantic v2 serialization: ModbusRegister (richer)
     # must be listed first so its extra fields are preserved.
     registers: list[ModbusRegister | ModbusRegisterBase] = Field(default_factory=list)
