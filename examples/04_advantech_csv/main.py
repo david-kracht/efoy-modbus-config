@@ -45,8 +45,8 @@ from typing import Optional
 
 from jinja2 import Environment, FileSystemLoader
 
-import efoy_modbus
-from efoy_modbus import ModbusDataType, ModbusRegisterType
+import modbus_config
+from modbus_schema_common import ModbusDataType, ModbusRegisterType
 
 # ---------------------------------------------------------------------------
 # Data-type mapping: EFOY schema → (Advantech modbus_dtype, mqtt_dtype, data_swap)
@@ -229,7 +229,7 @@ def main() -> None:
     parser.add_argument("--out", help="Output CSV file path (default: stdout)")
     args = parser.parse_args()
 
-    spec = efoy_modbus.latest()
+    spec = modbus_config.latest()
     rows = build_rows(
         spec,
         ip=args.ip,

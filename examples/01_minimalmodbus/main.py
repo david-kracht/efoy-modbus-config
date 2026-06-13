@@ -1,6 +1,6 @@
 """Example 1 — Read named registers with MinimalModbus
 ======================================================
-Demonstrates how to use the efoy_modbus schema to look up register metadata
+Demonstrates how to use the modbus_config schema to look up register metadata
 by name, so you never hardcode addresses, function codes, or scale factors.
 
 Run in demo mode (no hardware needed, default):
@@ -16,8 +16,8 @@ from __future__ import annotations
 
 import argparse
 
-import efoy_modbus
-from efoy_modbus import ModbusRegisterType
+import modbus_config
+from modbus_schema_common import ModbusRegisterType
 
 # Standard Modbus function codes for reading
 _READ_FC = {
@@ -61,11 +61,11 @@ def main() -> None:
                         help="Connect to real hardware")
     args = parser.parse_args()
 
-    spec = efoy_modbus.latest()
+    spec = modbus_config.latest()
     reg_map = {r.name: r for r in spec.registers}
 
     print(f"Schema : {spec.device_name} — firmware {spec.firmware}")
-    print(f"Registers: {len(spec.registers)}  |  versions: {efoy_modbus.versions()}\n")
+    print(f"Registers: {len(spec.registers)}  |  versions: {modbus_config.versions()}\n")
 
     if args.demo:
         instrument = _MockInstrument()

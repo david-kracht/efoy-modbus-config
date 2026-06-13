@@ -1,6 +1,6 @@
 # Examples
 
-Runnable examples that demonstrate how to use `efoy-modbus-config` as a library.
+Runnable examples that demonstrate how to use `modbus-config` as a library.
 Each example is a self-contained `uv` project: it ships its own `pyproject.toml`
 and can be run without activating any parent virtual environment.
 
@@ -10,6 +10,7 @@ and can be run without activating any parent virtual environment.
 | 2 | [`02_codegen_jinja2/`](#2--generate-typed-getter-functions-with-jinja2) | Render a Python module of getter functions | no |
 | 3 | [`03_mqtt_polling_plan/`](#3--build-a-modbusmqtt-polling-plan) | Build a JSON polling config for any MQTT bridge | no |
 | 4 | [`04_advantech_csv/`](#4--generate-an-advantech-modbus-to-mqtt-csv-config) | Render a full Advantech RouterApp CSV mapping | no |
+| 5 | [`05_generic_client_cli/`](#5--generic-modbus-tcp-client-and-cli) | Simplified dynamic client & Typer CLI using struct | optional |
 
 ---
 
@@ -20,7 +21,7 @@ and can be run without activating any parent virtual environment.
 git clone https://github.com/your-org/efoy-modbus-config
 cd efoy-modbus-config/examples/01_minimalmodbus
 
-# uv resolves dependencies (including the local efoy-modbus-config) automatically
+# uv resolves dependencies (including local modbus-config & modbus-schema-common) automatically
 uv run main.py
 ```
 
@@ -31,7 +32,7 @@ No `pip install`, no virtual environment activation required — `uv run` handle
 ## 1 — Read named registers with MinimalModbus
 
 **Directory:** `01_minimalmodbus/`  
-**Dependencies:** `efoy-modbus-config`, `minimalmodbus`
+**Dependencies:** `modbus-config`, `modbus-schema-common`, `minimalmodbus`
 
 Looks up registers from the schema by name so you never hardcode addresses,
 function codes, or scale factors in your application code.
@@ -46,7 +47,7 @@ uv run main.py --no-demo --port /dev/ttyUSB0 --slave 1 --baud 19200
 
 **Key pattern:**
 ```python
-spec = efoy_modbus.latest()
+spec = modbus_config.latest()
 reg_map = {r.name: r for r in spec.registers}
 
 _READ_FC = {
@@ -72,11 +73,11 @@ def read_register(instrument, name: str):
 ## 2 — Generate typed getter functions with Jinja2
 
 **Directory:** `02_codegen_jinja2/`  
-**Dependencies:** `efoy-modbus-config`, `jinja2`
+**Dependencies:** `modbus-config`, `modbus-schema-common`, `jinja2`
 
-Uses the schema as a code-generation source.  Renders a Python module with one
-type-annotated getter function per register.  The output has **zero runtime
-dependency** on `efoy-modbus-config` — only `minimalmodbus` is needed.
+Uses the schema as a code-generation source. Renders a Python module with one
+type-annotated getter function per register. The output has **zero runtime
+dependency** on `modbus-config` — only `minimalmodbus` is needed.
 
 ```bash
 # Print generated module to stdout
@@ -113,7 +114,7 @@ Regenerate whenever you update the schema (new firmware → new PDF → new `vN.
 ## 3 — Build a Modbus→MQTT polling plan
 
 **Directory:** `03_mqtt_polling_plan/`  
-**Dependencies:** `efoy-modbus-config`
+**Dependencies:** `modbus-config`, `modbus-schema-common`
 
 Constructs a complete JSON polling configuration from the latest schema.
 A Modbus→MQTT bridge (Node-RED, Telegraf, a custom script) can consume
@@ -156,10 +157,10 @@ uv run main.py --no-write-topics --out plan.json
 ## 4 — Generate an Advantech Modbus-to-MQTT CSV config
 
 **Directory:** `04_advantech_csv/`  
-**Dependencies:** `efoy-modbus-config`, `jinja2`
+**Dependencies:** `modbus-config`, `modbus-schema-common`, `jinja2`
 
 Renders a complete CSV mapping file for the **Advantech RouterApp "Modbus to MQTT"
-(APP-0087, firmware ≥ 6.4.x)**.  Covers every readable and writable EFOY register.
+(APP-0087, firmware ≥ 6.4.x)**. Covers every readable and writable EFOY register.
 
 The CSV uses 20 columns (A–T) matching the Advantech format:
 
@@ -229,7 +230,7 @@ efoy/SystemOn/set,SystemOn,192.168.1.100,502,1,5,1,1,Boolean,None,FALSE,Boolean,
 ### Address convention
 
 By default the script uses the `address_dec` values directly from the EFOY schema
-(e.g. `30040` for `SystemState`).  If your Advantech firmware requires PDU-level
+(e.g. `30040` for `SystemState`). If your Advantech firmware requires PDU-level
 addresses, pass `--strip-prefix` which subtracts the type offset:
 
 | Register type | 5-digit base | Example schema addr | PDU addr (--strip-prefix) |
@@ -238,3 +239,34 @@ addresses, pass `--strip-prefix` which subtracts the type offset:
 | `discrete_input` | 10000 | 10001 | 1 |
 | `input_register` | 30000 | 30040 | 40 |
 | `holding_register` | 40000 | 40001 | 1 |
+
+---
+
+## 5 — Generic Modbus TCP Client and CLI
+
+**Directory:** `05_generic_client_cli/`  
+**Dependencies:** `modbus-config`, `modbus-schema-common`, `pymodbus`, `typer`
+
+Demonstrates how to build a fully generic Modbus TCP client and CLI tool that reads, writes, and decodes any register template dynamically using the schema registry. 
+
+It maps registry data types (`float32`, `int16`, `bit`, `string`, etc.) using Python's built-in `struct` module for byte and word endianness translation.
+
+```bash
+# List all available registers in the latest schema
+uv run main.py list
+
+# Read a register value by name (with real-time decoding, scaling, and enum matching)
+uv run main.py read SystemState --port 5020
+
+# Write a value to a register by name (with real-time scaling and word encoding)
+uv run main.py write BatIdConfig 2 --port 5020
+```
+
+**Key Pattern (Generic Decoders):**
+```python
+def decode_register(registers: list[int], reg: ModbusRegister, byte_order: str, word_order: str) -> any:
+    # Uses python struct to decode registers matching reg.data_type, reg.byte_order, and reg.word_order
+    # Apply scaling: val = val * reg.scale_factor
+    # Apply enums: val = reg.enum_values[val]
+    ...
+```

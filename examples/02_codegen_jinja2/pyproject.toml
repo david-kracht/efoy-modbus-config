@@ -4,9 +4,11 @@ version = "0.1.0"
 description = "Generate typed MinimalModbus getter functions from the EFOY schema"
 requires-python = ">=3.11"
 dependencies = [
-    "efoy-modbus-config",
+    "modbus-config",
+    "modbus-schema-common",
     "jinja2>=3.1.0",
 ]
 
 [tool.uv.sources]
-efoy-modbus-config = { path = "../..", editable = true }
+modbus-config = { path = "../../packages/modbus-config", editable = true }
+modbus-schema-common = { path = "../../packages/modbus-schema-common", editable = true }

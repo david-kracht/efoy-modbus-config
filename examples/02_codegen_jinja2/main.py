@@ -2,7 +2,7 @@
 ==========================================================
 Uses the EFOY Modbus schema as a code-generation source.  Renders one
 Python getter function per register.  The generated module has zero
-dependency on efoy-modbus-config at runtime — only MinimalModbus is needed.
+dependency on modbus-config at runtime — only MinimalModbus is needed.
 
 Usage:
     uv run main.py                                # print to stdout
@@ -19,8 +19,8 @@ from pathlib import Path
 
 from jinja2 import Environment, BaseLoader
 
-import efoy_modbus
-from efoy_modbus import ModbusRegisterType
+import modbus_config
+from modbus_schema_common import ModbusRegisterType
 
 from templates import _HEADER, _FUNC
 
@@ -69,7 +69,7 @@ def main() -> None:
     parser.add_argument("--out", help="Write output to this .py file (default: stdout)")
     args = parser.parse_args()
 
-    spec = efoy_modbus.latest()
+    spec = modbus_config.latest()
 
     if args.type == "all":
         filter_types = _ALL_TYPES

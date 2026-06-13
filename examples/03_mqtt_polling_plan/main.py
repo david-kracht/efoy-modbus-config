@@ -3,7 +3,7 @@
 Constructs a complete polling configuration from the latest EFOY schema.
 A Modbus→MQTT bridge (e.g. Node-RED, mqtt-modbus-bridge, or a custom script)
 can consume this JSON at startup — no manually maintained config file needed.
-Reinstall efoy-modbus-config when the firmware schema changes and re-run.
+Reinstall modbus-config when the firmware schema changes and re-run.
 
 Usage:
     uv run main.py                      # preview first 5 entries on stderr + full JSON on stdout
@@ -19,8 +19,8 @@ import json
 import sys
 from pathlib import Path
 
-import efoy_modbus
-from efoy_modbus import ModbusRegisterType
+import modbus_config
+from modbus_schema_common import ModbusRegisterType
 
 # Standard Modbus function codes
 _READ_FC = {
@@ -94,7 +94,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    spec = efoy_modbus.latest()
+    spec = modbus_config.latest()
     access_filter = ("RO", "RW", "WO") if args.access == "all" else (args.access,)
 
     plan = build_plan(
