@@ -20,3 +20,6 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src/modbus_config"]
 artifacts = ["src/modbus_config/schemas/*.json"]
+
+[project.entry-points."modbus.schema"]
+modbus_config = "modbus_config"

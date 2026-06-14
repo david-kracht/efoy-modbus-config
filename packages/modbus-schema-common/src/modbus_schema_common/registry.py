@@ -85,3 +85,33 @@ def get_registry(package_name: str) -> SchemaRegistry:
     if package_name not in _registered_packages:
         return register_package(package_name)
     return _registered_packages[package_name]
+
+
+def get_available_schemas() -> list[str]:
+    """
+    Returns a list of all available schema identifiers in the format 'pkg/version'
+    across all currently registered packages. Also includes 'pkg/latest'.
+    """
+    # Discover packages via Python entry points (group "modbus.schema")
+    import importlib.metadata
+    try:
+        eps = importlib.metadata.entry_points(group="modbus.schema")
+        for ep in eps:
+            pkg_name = ep.name
+            if pkg_name not in _registered_packages:
+                try:
+                    # Loading the entry point triggers __init__.py which calls register_package
+                    ep.load()
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+    schemas = []
+    for pkg, registry in _registered_packages.items():
+        versions = registry.versions()
+        if versions:
+            schemas.append(f"{pkg}/latest")
+            for ver in reversed(versions):
+                schemas.append(f"{pkg}/{ver}")
+    return schemas
