@@ -1,0 +1,19 @@
+devices:
+  - name: SimDeviceA
+    host: 127.0.0.1
+    port: 5025
+    unit_id: 1
+    schema_name: modbus_config/latest
+    registers:
+      - SystemOn
+      - SystemState
+      - BatBocConfig
+  - name: SimDeviceB
+    host: 127.0.0.1
+    port: 5025
+    unit_id: 2
+    schema_name: modbus_config/latest
+    registers:
+      - SystemOff
+      - LogUBat
+      - AssemblyDate

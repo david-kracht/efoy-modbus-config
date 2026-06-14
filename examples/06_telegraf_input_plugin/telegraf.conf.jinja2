@@ -1,0 +1,46 @@
+# Global tags can be specified here in key="value" format.
+[global_tags]
+
+[agent]
+  interval = "5s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "5s"
+  flush_jitter = "0s"
+  precision = "0s"
+  hostname = ""
+  omit_hostname = false
+
+[[outputs.influxdb_v2]]
+  urls = ["http://127.0.0.1:8086"]
+  token = "my-super-secret-auth-token"
+  organization = "my-org"
+  bucket = "efoy"
+
+{% for device in devices %}
+# Retrieve data from MODBUS slave device: {{ device.name }}
+[[inputs.modbus]]
+  name = "{{ device.name }}"
+  slave_id = {{ device.unit_id }}
+  timeout = "1s"
+  controller = "tcp://{{ device.host }}:{{ device.port }}"
+  configuration_type = "request"
+
+  {% for reg_type, fields in device.groups.items() %}
+  [[inputs.modbus.request]]
+    slave_id = {{ device.unit_id }}
+    byte_order = "{{ device.byte_order }}"
+    register = "{{ reg_type }}"
+    
+    fields = [
+      {% for field in fields %}
+      { address={{ field.address }}, name="{{ field.name }}"{% if field.type %}, type="{{ field.type }}"{% endif %}{% if field.scale %}, scale={{ field.scale }}{% endif %}{% if field.length %}, length={{ field.length }}{% endif %} }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+
+    [inputs.modbus.request.tags]
+      device = "{{ device.name }}"
+  {% endfor %}
+{% endfor %}

@@ -1,0 +1,18 @@
+[project]
+name = "example-06-telegraf-input-plugin"
+version = "0.1.0"
+description = "Generate Telegraf Modbus config from the EFOY schema"
+requires-python = ">=3.11"
+dependencies = [
+    "modbus-config",
+    "modbus-schema-common",
+    "modbus-common",
+    "modbus-simulator",
+    "jinja2>=3.1.0",
+]
+
+[tool.uv.sources]
+modbus-config = { path = "../../packages/modbus-config", editable = true }
+modbus-schema-common = { path = "../../packages/modbus-schema-common", editable = true }
+modbus-common = { path = "../../packages/modbus-common", editable = true }
+modbus-simulator = { path = "../../packages/modbus-simulator", editable = true }

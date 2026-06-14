@@ -270,3 +270,42 @@ def decode_register(registers: list[int], reg: ModbusRegister, byte_order: str, 
     # Apply enums: val = reg.enum_values[val]
     ...
 ```
+
+---
+
+## 6 — Generate Telegraf Modbus Config via Jinja2
+
+**Directory:** `06_telegraf_input_plugin/`  
+**Dependencies:** `modbus-config`, `modbus-schema-common`, `modbus-common`, `jinja2`
+
+Generates a configuration file for the Telegraf `inputs.modbus` plugin. It reads a `devices.yaml` file to determine the target devices and which subset of registers to poll, resolving the data types and addresses from the central schema.
+
+```bash
+# Generate the config based on devices.yaml
+uv run main.py --out telegraf.conf
+```
+
+### Docker Compose Test Setup
+
+The example includes a `docker-compose.yml` defining a minimal test stack with Telegraf and InfluxDB. It is configured to run Telegraf on the host network to seamlessly poll the `modbus-simulator` running locally.
+
+1. Start your modbus simulator:
+```bash
+uv run modbus-sim --port 5025
+```
+
+2. Generate the Telegraf config:
+```bash
+cd 06_telegraf_input_plugin
+uv run main.py --out telegraf.conf
+```
+
+3. Start the test stack:
+```bash
+docker-compose up -d
+```
+
+4. Check Telegraf logs to see the data points (or log into InfluxDB at http://localhost:8086 with admin/adminpassword to view the data):
+```bash
+docker-compose logs -f telegraf
+```

@@ -25,7 +25,8 @@ async def run_server(schema_name: str, host: str, port: int):
     ir_vals = {}
     hr_vals = {}
 
-    input_floats = {r.address_dec: r for r in schema.registers if r.register_type == ModbusRegisterType.INPUT_REGISTER and r.data_type == ModbusDataType.FLOAT32}
+    float_regs = {r.address_dec: r for r in schema.registers if r.data_type == ModbusDataType.FLOAT32 and r.register_type in (ModbusRegisterType.INPUT_REGISTER, ModbusRegisterType.HOLDING_REGISTER)}
+    int_regs = {r.address_dec: r for r in schema.registers if r.data_type in (ModbusDataType.INT16, ModbusDataType.UINT16, ModbusDataType.INT32, ModbusDataType.UINT32) and r.register_type in (ModbusRegisterType.INPUT_REGISTER, ModbusRegisterType.HOLDING_REGISTER)}
     trigger_coils = {r.address_dec for r in schema.registers if r.register_type == ModbusRegisterType.COIL and r.access == "WO"}
 
     # Find min/max range for each register type to prevent gaps from being marked INVALID
@@ -113,14 +114,14 @@ async def run_server(schema_name: str, host: str, port: int):
         logger.info("sim_action: func_code=%d, start_address=%d, address=%d, count=%d, values=%s", func_code, start_address, address, count, values)
         if values is None:
             # Read request
-            if func_code == 4:
-                # Add jitter to float32 input registers on-the-fly
+            if func_code in (3, 4):
+                # Add jitter to numeric registers on-the-fly
                 for addr in range(address, address + count):
-                    if addr in input_floats and (addr + 1) < start_address + len(registers):
+                    if addr in float_regs and (addr + 1) < start_address + len(registers):
                         offset0 = addr - start_address
                         offset1 = offset0 + 1
                         try:
-                            reg = input_floats[addr]
+                            reg = float_regs[addr]
                             val = translator.unpack_register_value(
                                 [registers[offset0], registers[offset1]],
                                 reg.data_type,
@@ -138,7 +139,33 @@ async def run_server(schema_name: str, host: str, port: int):
                             registers[offset0] = new_words[0]
                             registers[offset1] = new_words[1]
                         except Exception as e:
-                            logger.error("Jitter update failed for register %d: %s", addr, e)
+                            logger.error("Float jitter update failed for register %d: %s", addr, e)
+                    elif addr in int_regs and addr < start_address + len(registers):
+                        offset = addr - start_address
+                        try:
+                            reg = int_regs[addr]
+                            count = reg.register_count
+                            if offset + count <= len(registers):
+                                words = [registers[offset + i] for i in range(count)]
+                                val = translator.unpack_register_value(
+                                    words,
+                                    reg.data_type,
+                                    byte_order=schema.byte_order,
+                                    word_order=schema.word_order,
+                                )
+                                # Randomly increment or decrement by 1 occasionally
+                                if random.random() > 0.5:
+                                    val += random.choice([-1, 1])
+                                new_words = translator.pack_register_value(
+                                    val,
+                                    reg.data_type,
+                                    byte_order=schema.byte_order,
+                                    word_order=schema.word_order,
+                                )
+                                for i in range(count):
+                                    registers[offset + i] = new_words[i]
+                        except Exception as e:
+                            logger.error("Int jitter update failed for register %d: %s", addr, e)
         else:
             # Write request
             if func_code in (5, 15):
