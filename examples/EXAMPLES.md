@@ -256,10 +256,10 @@ It maps registry data types (`float32`, `int16`, `bit`, `string`, etc.) using Py
 uv run main.py list
 
 # Read a register value by name (with real-time decoding, scaling, and enum matching)
-uv run main.py read SystemState --port 5020
+uv run main.py read SystemState --port 5025
 
 # Write a value to a register by name (with real-time scaling and word encoding)
-uv run main.py write BatIdConfig 2 --port 5020
+uv run main.py write BatIdConfig 2 --port 5025
 ```
 
 **Key Pattern (Generic Decoders):**

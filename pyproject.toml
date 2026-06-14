@@ -1,6 +1,8 @@
 [tool.uv.workspace]
 members = [
     "packages/modbus-schema-common",
+    "packages/modbus-common",
     "packages/modbus-config",
     "packages/modbus-schema-generator",
+    "packages/modbus-simulator",
 ]

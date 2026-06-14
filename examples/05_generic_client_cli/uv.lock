@@ -36,6 +36,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "modbus-config" },
     { name = "modbus-schema-common" },
+    { name = "modbus-simulator" },
     { name = "pymodbus" },
     { name = "typer" },
 ]
@@ -44,6 +45,7 @@ dependencies = [
 requires-dist = [
     { name = "modbus-config", editable = "../../packages/modbus-config" },
     { name = "modbus-schema-common", editable = "../../packages/modbus-schema-common" },
+    { name = "modbus-simulator", editable = "../../packages/modbus-simulator" },
     { name = "pymodbus", specifier = ">=3.8.0" },
     { name = "typer", specifier = ">=0.12.0" },
 ]
@@ -70,6 +72,21 @@ wheels = [
 ]
 
 [[package]]
+name = "modbus-common"
+version = "0.1.0"
+source = { editable = "../../packages/modbus-common" }
+dependencies = [
+    { name = "modbus-schema-common" },
+    { name = "pymodbus" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "modbus-schema-common", editable = "../../packages/modbus-schema-common" },
+    { name = "pymodbus", specifier = ">=3.6.8" },
+]
+
+[[package]]
 name = "modbus-config"
 version = "1.1.0"
 source = { editable = "../../packages/modbus-config" }
@@ -90,6 +107,25 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [{ name = "pydantic", specifier = ">=2.0.0" }]
+
+[[package]]
+name = "modbus-simulator"
+version = "0.1.0"
+source = { editable = "../../packages/modbus-simulator" }
+dependencies = [
+    { name = "modbus-common" },
+    { name = "modbus-schema-common" },
+    { name = "pymodbus" },
+    { name = "typer" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "modbus-common", editable = "../../packages/modbus-common" },
+    { name = "modbus-schema-common", editable = "../../packages/modbus-schema-common" },
+    { name = "pymodbus", specifier = ">=3.6.8" },
+    { name = "typer", specifier = ">=0.12.3" },
+]
 
 [[package]]
 name = "pydantic"

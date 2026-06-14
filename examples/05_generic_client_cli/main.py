@@ -13,7 +13,7 @@ List registers:
     uv run main.py list
 
 Read register (make sure a simulator or device is running):
-    uv run main.py read SystemState --port 5020
+    uv run main.py read SystemState --port 5025
 """
 
 from __future__ import annotations
@@ -137,7 +137,7 @@ class GenericModbusClient:
     Translates all register transactions dynamically based on the schema metadata.
     """
     def __init__(self, host: str, port: int, unit_id: int, byte_order: str, word_order: str):
-        self.client = ModbusTcpClient(host, port)
+        self.client = ModbusTcpClient(host=host, port=port)
         self.unit_id = unit_id
         self.byte_order = byte_order
         self.word_order = word_order
@@ -151,16 +151,17 @@ class GenericModbusClient:
     def read_register(self, reg: ModbusRegister) -> any:
         # 1. Fetch raw Modbus words based on register type (Function Code mapping)
         if reg.register_type == ModbusRegisterType.INPUT_REGISTER:
-            res = self.client.read_input_registers(reg.address_dec, count=reg.register_count, slave=self.unit_id)
+            res = self.client.read_input_registers(reg.address_dec, count=reg.register_count, device_id=self.unit_id)
         elif reg.register_type == ModbusRegisterType.HOLDING_REGISTER:
-            res = self.client.read_holding_registers(reg.address_dec, count=reg.register_count, slave=self.unit_id)
+            res = self.client.read_holding_registers(reg.address_dec, count=reg.register_count, device_id=self.unit_id)
         elif reg.register_type == ModbusRegisterType.COIL:
-            res = self.client.read_coils(reg.address_dec, count=1, slave=self.unit_id)
+            res = self.client.read_coils(reg.address_dec, count=1, device_id=self.unit_id)
             if res.isError():
                 raise IOError(f"Modbus error reading coil {reg.name}: {res}")
             return res.bits[0]
         elif reg.register_type == ModbusRegisterType.DISCRETE_INPUT:
-            res = self.client.read_discrete_inputs(reg.address_dec, count=1, slave=self.unit_id)
+            # We don't have this in our schema but for completeness:
+            res = self.client.read_discrete_inputs(reg.address_dec, count=1, device_id=self.unit_id)
             if res.isError():
                 raise IOError(f"Modbus error reading discrete input {reg.name}: {res}")
             return res.bits[0]
@@ -191,8 +192,8 @@ class GenericModbusClient:
     def write_register(self, reg: ModbusRegister, value: any) -> None:
         # 1. Parse discrete types directly
         if reg.register_type == ModbusRegisterType.COIL:
-            bool_val = value.lower() in ("true", "1", "on", "yes") if isinstance(value, str) else bool(value)
-            res = self.client.write_coil(reg.address_dec, bool_val, slave=self.unit_id)
+            bool_val = str(value).lower() in ("true", "1", "yes")
+            res = self.client.write_coil(reg.address_dec, bool_val, device_id=self.unit_id)
         elif reg.register_type == ModbusRegisterType.HOLDING_REGISTER:
             # 2. Encode structured data types (float32, etc.) into 16-bit words
             scale = getattr(reg, "scale_factor", 1.0)
@@ -203,9 +204,9 @@ class GenericModbusClient:
                 
             regs = encode_register(raw_val, reg, self.byte_order, self.word_order)
             if reg.register_count == 1:
-                res = self.client.write_register(reg.address_dec, regs[0], slave=self.unit_id)
+                res = self.client.write_register(reg.address_dec, regs[0], device_id=self.unit_id)
             else:
-                res = self.client.write_registers(reg.address_dec, regs, slave=self.unit_id)
+                res = self.client.write_registers(reg.address_dec, regs, device_id=self.unit_id)
         else:
             raise ValueError(f"Register {reg.name} is not writable (type: {reg.register_type})")
 
@@ -234,7 +235,7 @@ def list_registers():
 def read_register(
     name: str = typer.Argument(..., help="Register name to read"),
     host: str = typer.Option("127.0.0.1", "--host", "-h", help="Modbus TCP host"),
-    port: int = typer.Option(5020, "--port", "-p", help="Modbus TCP port"),
+    port: int = typer.Option(5025, "--port", "-p", help="Modbus TCP port"),
     unit_id: int = typer.Option(1, "--unit", "-u", help="Modbus slave unit ID"),
 ):
     """Read a register value by name, using dynamic schema settings."""
@@ -265,7 +266,7 @@ def write_register(
     name: str = typer.Argument(..., help="Register name to write to"),
     value: str = typer.Argument(..., help="Value to write (numeric or boolean string)"),
     host: str = typer.Option("127.0.0.1", "--host", "-h", help="Modbus TCP host"),
-    port: int = typer.Option(5020, "--port", "-p", help="Modbus TCP port"),
+    port: int = typer.Option(5025, "--port", "-p", help="Modbus TCP port"),
     unit_id: int = typer.Option(1, "--unit", "-u", help="Modbus slave unit ID"),
 ):
     """Write a value to a register by name, using dynamic schema settings."""
