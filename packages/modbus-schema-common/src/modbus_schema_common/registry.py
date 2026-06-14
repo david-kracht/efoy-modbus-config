@@ -63,13 +63,16 @@ class SchemaRegistry:
         self._cache[key] = spec
         return spec
 
-    def latest(self) -> ModbusInterfaceSpecification:
+    def latest_version(self) -> str:
         available = self.versions()
         if not available:
             raise RuntimeError(
                 f"No schema files found in {self.package_name}.{self.schema_subdir}."
             )
-        return self.load(available[-1])
+        return available[-1]
+
+    def latest(self) -> ModbusInterfaceSpecification:
+        return self.load(self.latest_version())
 
 
 def register_package(name: str, schema_subdir: str = "schemas") -> SchemaRegistry:

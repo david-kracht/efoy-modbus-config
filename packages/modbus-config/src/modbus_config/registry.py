@@ -5,3 +5,4 @@ _registry = register_package("modbus_config")
 versions = _registry.versions
 load = _registry.load
 latest = _registry.latest
+latest_version = _registry.latest_version
