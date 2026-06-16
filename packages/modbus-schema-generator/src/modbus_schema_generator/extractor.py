@@ -336,6 +336,21 @@ _COLON_VAL = re.compile(r'^(\d+):\s*(.+)$')
 # First value on the same header line: "Battery types 0: No Battery"
 _BATTERY_FIRST = re.compile(r'Battery\s+types\s+(\d+):\s*(.+)')
 _CARTRIDGE_FIRST = re.compile(r'Cartridge\s+types\s+(\d+):\s*(.+)')
+# Page-marker pattern: "[27]" / "[27] any text" — structural, not content-specific
+_PAGE_MARKER_RE = re.compile(r'^\[\d+\]')
+
+
+def _is_enum_stop(line: str) -> bool:
+    """True when a line should end enum-value continuation.
+
+    Uses only structural signals — no footer-content matching:
+      - section headers like "3 Serial…" or "2.4 Cartridge types"
+      - PDF page-number markers: "[27]", "[28] …"
+    """
+    return bool(
+        _SECTION_HEADER_RE.search(line) or _PAGE_MARKER_RE.match(line)
+    )
+
 
 
 # Pattern: "firmware 24.15.303" (case-insensitive)
@@ -371,11 +386,6 @@ def extract_enum_type_definitions(pdf_path: Path) -> list:
     """
     from modbus_schema_common.models import EnumTypeDefinition
 
-    lines: list[str] = []
-    with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages:
-            lines.extend((page.extract_text() or "").splitlines())
-
     state_vals: dict[int, str] = {}
     mode_vals: dict[int, str] = {}
     on_vals: dict[int, str] = {}
@@ -385,61 +395,93 @@ def extract_enum_type_definitions(pdf_path: Path) -> list:
 
     section: str | None = None
 
-    for raw_line in lines:
-        line = raw_line.strip()
-        if not line:
-            continue
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            # Reset last_key at every page boundary so footer text on one page
+            # can never be appended to the last enum value of the previous page.
+            last_key: int | None = None
+            for raw_line in (page.extract_text() or "").splitlines():
+                line = raw_line.strip()
+                if not line:
+                    continue
 
-        # ── Section header detection (checked before per-section parsing) ──
+                # ── Section header detection ──
 
-        if _SYSSTATE_HEADER.search(line):
-            section = "sysstate"
-            continue
+                if _SYSSTATE_HEADER.search(line):
+                    section = "sysstate"
+                    last_key = None
+                    continue
 
-        m = _BATTERY_FIRST.search(line)
-        if m:
-            section = "battery"
-            bat_vals[int(m.group(1))] = m.group(2).strip()
-            continue
+                m = _BATTERY_FIRST.search(line)
+                if m:
+                    section = "battery"
+                    last_key = int(m.group(1))
+                    bat_vals[last_key] = m.group(2).strip()
+                    continue
 
-        m = _CARTRIDGE_FIRST.search(line)
-        if m:
-            section = "cartridge"
-            cart_vals[int(m.group(1))] = m.group(2).strip()
-            continue
+                m = _CARTRIDGE_FIRST.search(line)
+                if m:
+                    section = "cartridge"
+                    last_key = int(m.group(1))
+                    cart_vals[last_key] = m.group(2).strip()
+                    continue
 
-        m = _REASON_HEADER.search(line)
-        if m:
-            section = "on_reason" if "On" in m.group(1) else "off_reason"
-            continue
+                m = _REASON_HEADER.search(line)
+                if m:
+                    section = "on_reason" if "On" in m.group(1) else "off_reason"
+                    last_key = None
+                    continue
 
-        if section is None:
-            continue
+                if section is None:
+                    continue
 
-        # ── Per-section value parsing ──
+                # ── Per-section value parsing ──
 
-        if section == "sysstate":
-            m = _SYSSTATE_DOUBLE.match(line)
-            if m:
-                state_vals[int(m.group(1))] = m.group(2).strip()
-                mode_vals[int(m.group(3))] = m.group(4).strip()
-                continue
-            m = _SYSSTATE_SINGLE.match(line)
-            if m:
-                state_vals[int(m.group(1))] = m.group(2).strip()
+                if section == "sysstate":
+                    m = _SYSSTATE_DOUBLE.match(line)
+                    if m:
+                        state_vals[int(m.group(1))] = m.group(2).strip()
+                        mode_vals[int(m.group(3))] = m.group(4).strip()
+                        continue
+                    m = _SYSSTATE_SINGLE.match(line)
+                    if m:
+                        state_vals[int(m.group(1))] = m.group(2).strip()
 
-        elif section in ("on_reason", "off_reason"):
-            m = _COLON_VAL.match(line)
-            if m:
-                target = on_vals if section == "on_reason" else off_vals
-                # Strip trailing sentence punctuation
-                target[int(m.group(1))] = m.group(2).rstrip(".")
+                elif section in ("on_reason", "off_reason"):
+                    m = _COLON_VAL.match(line)
+                    if m:
+                        target = on_vals if section == "on_reason" else off_vals
+                        last_key = int(m.group(1))
+                        target[last_key] = m.group(2).rstrip(".")
+                    elif last_key is not None:
+                        if _is_enum_stop(line):
+                            last_key = None
+                        else:
+                            target = (
+                                on_vals if section == "on_reason" else off_vals
+                            )
+                            if last_key in target:
+                                target[last_key] = (
+                                    target[last_key] + " " + line
+                                ).rstrip(".")
 
-        elif section in ("battery", "cartridge"):
-            m = _COLON_VAL.match(line)
-            if m:
-                target = bat_vals if section == "battery" else cart_vals
-                target[int(m.group(1))] = m.group(2).rstrip(".")
+                elif section in ("battery", "cartridge"):
+                    m = _COLON_VAL.match(line)
+                    if m:
+                        target = bat_vals if section == "battery" else cart_vals
+                        last_key = int(m.group(1))
+                        target[last_key] = m.group(2).rstrip(".")
+                    elif last_key is not None:
+                        if _is_enum_stop(line):
+                            last_key = None
+                        else:
+                            target = (
+                                bat_vals if section == "battery" else cart_vals
+                            )
+                            if last_key in target:
+                                target[last_key] = (
+                                    target[last_key] + " " + line
+                                ).rstrip(".")
 
     result: list[EnumTypeDefinition] = []
     if state_vals:

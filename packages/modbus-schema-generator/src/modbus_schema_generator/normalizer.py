@@ -232,7 +232,7 @@ def raw_entry_to_register(
     common = dict(
         address_hex=address_hex,
         address_dec=address_dec,
-        name=entry["name"],          # preserve original PascalCase from the PDF
+        name=re.sub(r"\s+", "", entry["name"]),
         description=entry["description"],
         data_type=data_type,
         register_count=_REGISTER_COUNT[data_type],

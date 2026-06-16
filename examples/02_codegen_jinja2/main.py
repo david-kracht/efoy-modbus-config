@@ -46,9 +46,12 @@ def render(spec, filter_types: list[ModbusRegisterType]) -> str:
 
     parts = [header_tmpl.render(spec=spec, regs=regs, reg_types=reg_type_names)]
 
+    mask = spec.address_mask
     for reg in regs:
+        proto_addr = (reg.address_dec - 1) % mask if mask else reg.address_dec
         parts.append(func_tmpl.render(
             reg=reg,
+            proto_addr=proto_addr,
             fc=_READ_FC[reg.register_type],
             unit=getattr(reg, "unit", None),
             scale=getattr(reg, "scale_factor", 1.0),

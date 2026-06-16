@@ -5,6 +5,7 @@
   "firmware": "24.15.303",
   "byte_order": "big",
   "word_order": "little",
+  "address_mask": 10000,
   "registers": [
     {
       "address_hex": "0x1",
@@ -2615,7 +2616,7 @@
       "address_hex": "0x763a",
       "address_dec": 30266,
       "name": "FmdLastErrorMinor",
-      "description": "The previously set Fmd error code mi-nor.",
+      "description": "The previously set Fmd error code mi- nor.",
       "data_type": "uint16",
       "register_count": 1,
       "access": "RO",
@@ -4208,7 +4209,7 @@
     {
       "address_hex": "0x9c94",
       "address_dec": 40084,
-      "name": "ClusterClientPin",
+      "name": "ClusterClientPinConfig",
       "description": "Config Cluster Client Pin (numeric be- tween 0 and 100’000’000)",
       "data_type": "uint32",
       "register_count": 2,

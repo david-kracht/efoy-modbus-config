@@ -69,13 +69,10 @@ _READ_FC = {
     ModbusRegisterType.INPUT_REGISTER:   4,   # FC04 – read input registers
 }
 
-# Prefix offsets used when --strip-prefix is requested
-_ADDR_OFFSET = {
-    ModbusRegisterType.COIL:             0,       # coils:             00001 base
-    ModbusRegisterType.DISCRETE_INPUT:   10000,   # discrete inputs:   10001 base
-    ModbusRegisterType.INPUT_REGISTER:   30000,   # input registers:   30001 base
-    ModbusRegisterType.HOLDING_REGISTER: 40000,   # holding registers: 40001 base
-}
+
+def _proto(schema_addr: int, address_mask: int) -> int:
+    """Convert 5-digit EFOY schema address to 0-based protocol address."""
+    return (schema_addr - 1) % address_mask if address_mask else schema_addr
 
 
 @dataclass
@@ -177,7 +174,7 @@ def build_rows(
     for reg in spec.registers:
         addr = reg.address_dec
         if strip_prefix:
-            addr = addr - _ADDR_OFFSET[reg.register_type]
+            addr = _proto(reg.address_dec, spec.address_mask)
 
         # Read row — all register types support a read function code
         if reg.access in ("RO", "RW"):

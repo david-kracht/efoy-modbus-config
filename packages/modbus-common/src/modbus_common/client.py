@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import socket
 from pymodbus.client import AsyncModbusTcpClient
@@ -22,11 +23,26 @@ class ModbusClientWrapper:
             logger.info("Connecting to Modbus TCP at %s:%d", self.host, self.port)
             success = await self.client.connect()
             if success:
-                logger.info("Successfully connected to Modbus TCP at %s:%d", self.host, self.port)
+                # pymodbus 3.x: connect() returns True once TCP handshake
+                # initiates, but the asyncio protocol's connection_made()
+                # fires on the next event-loop iteration. Poll until
+                # client.connected is True so callers can read immediately.
+                for _ in range(20):
+                    if self.client.connected:
+                        break
+                    await asyncio.sleep(0.05)
+            if self.client.connected:
+                logger.info(
+                    "Successfully connected to Modbus TCP at %s:%d",
+                    self.host, self.port,
+                )
                 self._apply_keepalive()
-            else:
-                logger.error("Failed to connect to Modbus TCP at %s:%d", self.host, self.port)
-            return success
+                return True
+            logger.error(
+                "Failed to connect to Modbus TCP at %s:%d",
+                self.host, self.port,
+            )
+            return False
         return True
 
     def _apply_keepalive(self) -> None:
@@ -47,6 +63,12 @@ class ModbusClientWrapper:
             logger.warning("Could not set TCP Keep-Alive on socket: %s", e)
 
     async def close(self) -> None:
-        if self.client and self.client.connected:
-            self.client.close()
-            logger.info("Closed connection to Modbus TCP at %s:%d", self.host, self.port)
+        if self.client is not None:
+            if self.client.connected:
+                self.client.close()
+                logger.info(
+                    "Closed connection to Modbus TCP at %s:%d",
+                    self.host, self.port,
+                )
+            # Reset so the next connect() creates a fresh AsyncModbusTcpClient
+            self.client = None

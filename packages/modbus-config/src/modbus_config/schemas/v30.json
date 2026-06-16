@@ -5,6 +5,7 @@
   "firmware": "24.18.340",
   "byte_order": "big",
   "word_order": "little",
+  "address_mask": 10000,
   "registers": [
     {
       "address_hex": "0x1",
@@ -1156,7 +1157,7 @@
         "4": "The system has turned off automatically because an overvoltage at the output was detected",
         "5": "The system has turned off because frost protection mode has finished",
         "6": "The system has turned off because the fuel cartridge has depleted",
-        "7": "The system has turned off because methanol in reservoir and tubes is depleted for",
+        "7": "The system has turned off because methanol in reservoir and tubes is depleted for transportation mode",
         "8": "The system has turned off because an error has occurred",
         "9": "The system was reset"
       }
@@ -2655,7 +2656,7 @@
       "address_hex": "0x763a",
       "address_dec": 30266,
       "name": "FmdLastErrorMinor",
-      "description": "The previously set Fmd error code mi-nor.",
+      "description": "The previously set Fmd error code mi- nor.",
       "data_type": "uint16",
       "register_count": 1,
       "access": "RO",
@@ -3665,7 +3666,7 @@
     {
       "address_hex": "0x76c1",
       "address_dec": 30401,
-      "name": "NoChargingPeriod-\nStartHours",
+      "name": "NoChargingPeriod-StartHours",
       "description": "Start hours e.g. 12:XX UTC when automatic charging is not allowed",
       "data_type": "uint16",
       "register_count": 1,
@@ -3677,7 +3678,7 @@
     {
       "address_hex": "0x76c2",
       "address_dec": 30402,
-      "name": "NoChargingPeriodDuration-\nHours",
+      "name": "NoChargingPeriodDuration-Hours",
       "description": "Duration hours: how many hours automatic charging is not allowed",
       "data_type": "uint16",
       "register_count": 1,
@@ -4332,7 +4333,7 @@
     {
       "address_hex": "0x9c94",
       "address_dec": 40084,
-      "name": "ClusterClientPin",
+      "name": "ClusterClientPinConfig",
       "description": "Config Cluster Client Pin (numeric be- tween 0 and 100’000’000)",
       "data_type": "uint32",
       "register_count": 2,

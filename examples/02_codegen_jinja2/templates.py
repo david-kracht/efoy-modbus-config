@@ -19,11 +19,12 @@ _FUNC = """\
 def read_{{ reg.name }}(instrument: minimalmodbus.Instrument):
     \"\"\"{{ reg.description | truncate(80, True, '...') }}
 
-    Address : {{ reg.address_dec }} ({{ reg.address_hex }})
+    Schema address : {{ reg.address_dec }} ({{ reg.address_hex }})
+    Protocol address: {{ proto_addr }} (0-based)
     FC      : {{ fc }}
     Type    : {{ reg.data_type.value }}  {{ reg.access }}{% if unit %}  unit={{ unit }}{% endif %}
     \"\"\"
-    raw = instrument.read_register({{ reg.address_dec }}, functioncode={{ fc }})
+    raw = instrument.read_register({{ proto_addr }}, functioncode={{ fc }})
     {% if enum_values -%}
     _labels = {{ enum_values }}
     return _labels.get(str(raw), f"unknown ({raw})")

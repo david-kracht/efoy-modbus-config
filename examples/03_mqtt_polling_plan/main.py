@@ -36,6 +36,11 @@ _WRITE_FC = {
 }
 
 
+def _proto(schema_addr: int, address_mask: int) -> int:
+    """Convert 5-digit EFOY schema address to 0-based protocol address."""
+    return (schema_addr - 1) % address_mask if address_mask else schema_addr
+
+
 def build_plan(
     spec,
     access_filter: tuple[str, ...],
@@ -47,10 +52,12 @@ def build_plan(
         if reg.access not in access_filter:
             continue
 
+        proto_addr = _proto(reg.address_dec, spec.address_mask)
         entry = {
             "topic": f"{topic_prefix}/{reg.name}",
             "subscribe_topic": f"{topic_prefix}/{reg.name}/set" if include_write_topics else None,
-            "address": reg.address_dec,
+            "schema_address": reg.address_dec,
+            "address": proto_addr,
             "register_type": reg.register_type.value,
             "read_fc": _READ_FC[reg.register_type],
             "write_fc": _WRITE_FC.get(reg.register_type),   # None for RO types

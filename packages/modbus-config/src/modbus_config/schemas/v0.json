@@ -5,6 +5,7 @@
   "firmware": "0.0.0",
   "byte_order": "big",
   "word_order": "little",
+  "address_mask": 10000,
   "registers": [
     {
       "address_hex": "0x1",

@@ -72,6 +72,14 @@ class ModbusInterfaceSpecification(BaseModel):
         default=Endianness.LITTLE,
         description="Word order for multi-word values (big = MSW first, little = LSW first)"
     )
+    address_mask: int = Field(
+        default=10000,
+        description=(
+            "Decimal mask: protocol_addr = (schema_addr - 1) % address_mask. "
+            "Strips the register-type prefix digit (e.g. 30001 → 0). "
+            "0 = no masking, direct addressing (protocol_addr = schema_addr)."
+        ),
+    )
     # Union order matters for Pydantic v2 serialization: ModbusRegister (richer)
     # must be listed first so its extra fields are preserved.
     registers: list[ModbusRegister | ModbusRegisterBase] = Field(default_factory=list)

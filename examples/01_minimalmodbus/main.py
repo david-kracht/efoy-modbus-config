@@ -28,13 +28,19 @@ _READ_FC = {
 }
 
 
-def read_register(instrument, reg_map: dict, name: str):
+def _proto(schema_addr: int, address_mask: int) -> int:
+    """Convert 5-digit EFOY schema address to 0-based protocol address."""
+    return (schema_addr - 1) % address_mask if address_mask else schema_addr
+
+
+def read_register(instrument, reg_map: dict, name: str, address_mask: int):
     """Read a register by name and return a decoded Python value.
 
     Applies the scale factor and resolves enum labels automatically.
     """
     reg = reg_map[name]
-    raw = instrument.read_register(reg.address_dec, functioncode=_READ_FC[reg.register_type])
+    proto_addr = _proto(reg.address_dec, address_mask)
+    raw = instrument.read_register(proto_addr, functioncode=_READ_FC[reg.register_type])
     enum_values = getattr(reg, "enum_values", None)
     scale_factor = getattr(reg, "scale_factor", 1.0)
     if enum_values:
@@ -42,12 +48,13 @@ def read_register(instrument, reg_map: dict, name: str):
     return raw * scale_factor
 
 
-def write_holding_register(instrument, reg_map: dict, name: str, value: int) -> None:
+def write_holding_register(instrument, reg_map: dict, name: str, value: int, address_mask: int) -> None:
     """Write an integer value to a holding register (FC06)."""
     reg = reg_map[name]
     if reg.register_type != ModbusRegisterType.HOLDING_REGISTER:
         raise ValueError(f"{name} is not a holding register")
-    instrument.write_register(reg.address_dec, value, functioncode=6)
+    proto_addr = _proto(reg.address_dec, address_mask)
+    instrument.write_register(proto_addr, value, functioncode=6)
 
 
 def main() -> None:
@@ -87,11 +94,12 @@ def main() -> None:
         if name not in reg_map:
             print(f"  {name}: not found in schema (check schema version)")
             continue
-        value = read_register(instrument, reg_map, name)
+        value = read_register(instrument, reg_map, name, spec.address_mask)
         reg = reg_map[name]
         unit = f" {reg.unit}" if getattr(reg, "unit", None) else ""
         fc = _READ_FC[reg.register_type]
-        print(f"  {name:30s}  addr={reg.address_dec}  fc={fc}  → {value}{unit}")
+        proto = _proto(reg.address_dec, spec.address_mask)
+        print(f"  {name:30s}  schema={reg.address_dec}  proto={proto}  fc={fc}  → {value}{unit}")
 
 
 class _MockInstrument:

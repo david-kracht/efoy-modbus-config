@@ -26,6 +26,11 @@ import modbus_config
 from modbus_schema_common import ModbusRegister, ModbusRegisterType, ModbusDataType
 
 
+def _proto(schema_addr: int, address_mask: int) -> int:
+    """Convert 5-digit EFOY schema address to 0-based protocol address."""
+    return (schema_addr - 1) % address_mask if address_mask else schema_addr
+
+
 def decode_register(registers: list[int], reg: ModbusRegister, byte_order: str, word_order: str) -> any:
     """Decode raw 16-bit Modbus registers into Python types using struct and schema info."""
     fmt_map = {
@@ -136,11 +141,12 @@ class GenericModbusClient:
 
     Translates all register transactions dynamically based on the schema metadata.
     """
-    def __init__(self, host: str, port: int, unit_id: int, byte_order: str, word_order: str):
+    def __init__(self, host: str, port: int, unit_id: int, byte_order: str, word_order: str, address_mask: int = 10000):
         self.client = ModbusTcpClient(host=host, port=port)
         self.unit_id = unit_id
         self.byte_order = byte_order
         self.word_order = word_order
+        self.address_mask = address_mask
 
     def connect(self) -> bool:
         return self.client.connect()
@@ -150,18 +156,18 @@ class GenericModbusClient:
 
     def read_register(self, reg: ModbusRegister) -> any:
         # 1. Fetch raw Modbus words based on register type (Function Code mapping)
+        proto_addr = _proto(reg.address_dec, self.address_mask)
         if reg.register_type == ModbusRegisterType.INPUT_REGISTER:
-            res = self.client.read_input_registers(reg.address_dec, count=reg.register_count, device_id=self.unit_id)
+            res = self.client.read_input_registers(proto_addr, count=reg.register_count, device_id=self.unit_id)
         elif reg.register_type == ModbusRegisterType.HOLDING_REGISTER:
-            res = self.client.read_holding_registers(reg.address_dec, count=reg.register_count, device_id=self.unit_id)
+            res = self.client.read_holding_registers(proto_addr, count=reg.register_count, device_id=self.unit_id)
         elif reg.register_type == ModbusRegisterType.COIL:
-            res = self.client.read_coils(reg.address_dec, count=1, device_id=self.unit_id)
+            res = self.client.read_coils(proto_addr, count=1, device_id=self.unit_id)
             if res.isError():
                 raise IOError(f"Modbus error reading coil {reg.name}: {res}")
             return res.bits[0]
         elif reg.register_type == ModbusRegisterType.DISCRETE_INPUT:
-            # We don't have this in our schema but for completeness:
-            res = self.client.read_discrete_inputs(reg.address_dec, count=1, device_id=self.unit_id)
+            res = self.client.read_discrete_inputs(proto_addr, count=1, device_id=self.unit_id)
             if res.isError():
                 raise IOError(f"Modbus error reading discrete input {reg.name}: {res}")
             return res.bits[0]
@@ -191,9 +197,10 @@ class GenericModbusClient:
 
     def write_register(self, reg: ModbusRegister, value: any) -> None:
         # 1. Parse discrete types directly
+        proto_addr = _proto(reg.address_dec, self.address_mask)
         if reg.register_type == ModbusRegisterType.COIL:
             bool_val = str(value).lower() in ("true", "1", "yes")
-            res = self.client.write_coil(reg.address_dec, bool_val, device_id=self.unit_id)
+            res = self.client.write_coil(proto_addr, bool_val, device_id=self.unit_id)
         elif reg.register_type == ModbusRegisterType.HOLDING_REGISTER:
             # 2. Encode structured data types (float32, etc.) into 16-bit words
             scale = getattr(reg, "scale_factor", 1.0)
@@ -201,12 +208,12 @@ class GenericModbusClient:
                 raw_val = float(value) / scale
             else:
                 raw_val = float(value) if reg.data_type == ModbusDataType.FLOAT32 else int(value)
-                
+
             regs = encode_register(raw_val, reg, self.byte_order, self.word_order)
             if reg.register_count == 1:
-                res = self.client.write_register(reg.address_dec, regs[0], device_id=self.unit_id)
+                res = self.client.write_register(proto_addr, regs[0], device_id=self.unit_id)
             else:
-                res = self.client.write_registers(reg.address_dec, regs, device_id=self.unit_id)
+                res = self.client.write_registers(proto_addr, regs, device_id=self.unit_id)
         else:
             raise ValueError(f"Register {reg.name} is not writable (type: {reg.register_type})")
 
@@ -276,7 +283,7 @@ def write_register(
         typer.echo(f"Error: Register '{name}' not found in the latest schema.", err=True)
         raise typer.Exit(1)
         
-    client = GenericModbusClient(host, port, unit_id, spec.byte_order.value, spec.word_order.value)
+    client = GenericModbusClient(host, port, unit_id, spec.byte_order.value, spec.word_order.value, spec.address_mask)
     if not client.connect():
         typer.echo(f"Error: Could not connect to Modbus TCP server at {host}:{port}.", err=True)
         raise typer.Exit(1)
