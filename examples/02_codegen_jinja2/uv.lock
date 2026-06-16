@@ -12,35 +12,24 @@ wheels = [
 ]
 
 [[package]]
-name = "efoy-modbus-config"
-version = "1.2.0"
-source = { editable = "../../" }
-dependencies = [
-    { name = "pydantic" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "httpx", marker = "extra == 'generate'", specifier = ">=0.27.0" },
-    { name = "pdfplumber", marker = "extra == 'generate'", specifier = ">=0.11.0" },
-    { name = "pydantic", specifier = ">=2.0.0" },
-    { name = "python-dotenv", marker = "extra == 'generate'", specifier = ">=1.0.0" },
-]
-provides-extras = ["generate"]
-
-[[package]]
 name = "example-02-codegen-jinja2"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "efoy-modbus-config" },
     { name = "jinja2" },
+    { name = "minimalmodbus" },
+    { name = "modbus-config" },
+    { name = "modbus-schema-common" },
+    { name = "pymodbus" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "efoy-modbus-config", editable = "../../" },
     { name = "jinja2", specifier = ">=3.1.0" },
+    { name = "minimalmodbus", specifier = ">=2.1.1" },
+    { name = "modbus-config", editable = "../../packages/modbus-config" },
+    { name = "modbus-schema-common", editable = "../../packages/modbus-schema-common" },
+    { name = "pymodbus", specifier = ">=3.13.1" },
 ]
 
 [[package]]
@@ -128,6 +117,40 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/1a/8a/0402ba61a2f16038b48b39bccca271134be00c5c9f0f623208399333c448/markupsafe-3.0.3-cp314-cp314t-win_amd64.whl", hash = "sha256:4faffd047e07c38848ce017e8725090413cd80cbc23d86e55c587bf979e579c9", size = 15426, upload-time = "2025-09-27T18:37:27.316Z" },
     { url = "https://files.pythonhosted.org/packages/70/bc/6f1c2f612465f5fa89b95bead1f44dcb607670fd42891d8fdcd5d039f4f4/markupsafe-3.0.3-cp314-cp314t-win_arm64.whl", hash = "sha256:32001d6a8fc98c8cb5c947787c5d08b0a50663d139f1305bac5885d98d9b40fa", size = 14146, upload-time = "2025-09-27T18:37:28.327Z" },
 ]
+
+[[package]]
+name = "minimalmodbus"
+version = "2.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyserial" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/37/fc/8a58f7bcdece751f16a4a9aac780acd1288aa8ac6adbffdd764c88fb71c6/minimalmodbus-2.1.1.tar.gz", hash = "sha256:c3f5a56e107d537e4bb420f7e735841ab2939c8ca6fb528f5fe4124571315b64", size = 102512, upload-time = "2023-07-17T19:51:19.184Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/25/7b/b73ba3ec36687341e37a1c9df0ebec3e3b2b0f8d6ae14e109ec5076ebe58/minimalmodbus-2.1.1-py3-none-any.whl", hash = "sha256:75c677e2f3ea901b762f8b2ab7cf8ad84de915bbea275d66e30b724e23887b1a", size = 32335, upload-time = "2023-07-17T19:51:16.707Z" },
+]
+
+[[package]]
+name = "modbus-config"
+version = "1.1.0"
+source = { editable = "../../packages/modbus-config" }
+dependencies = [
+    { name = "modbus-schema-common" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "modbus-schema-common", editable = "../../packages/modbus-schema-common" }]
+
+[[package]]
+name = "modbus-schema-common"
+version = "1.0.0"
+source = { editable = "../../packages/modbus-schema-common" }
+dependencies = [
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pydantic", specifier = ">=2.0.0" }]
 
 [[package]]
 name = "pydantic"
@@ -244,6 +267,24 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ac/ad/5565071e937d8e752842ac241463944c9eb14c87e2d269f2658a5bd05e98/pydantic_core-2.46.4-pp311-pypy311_pp73-musllinux_1_1_armv7l.whl", hash = "sha256:d396ec2b979760aaf3218e76c24e65bd0aca24983298653b3a9d7a45f9e47b30", size = 2310000, upload-time = "2026-05-06T13:37:56.694Z" },
     { url = "https://files.pythonhosted.org/packages/4f/c3/66883a5cec183e7fba4d024b4cbbe61851a63750ef606b0afecc46d1f2bf/pydantic_core-2.46.4-pp311-pypy311_pp73-musllinux_1_1_x86_64.whl", hash = "sha256:86e1a4418c6cd97d60c95c71164158eaf7324fae7b0923264016baa993eba6fc", size = 2361286, upload-time = "2026-05-06T13:40:05.667Z" },
     { url = "https://files.pythonhosted.org/packages/4b/2d/69abac8f838090bbecd5df894befb2c2619e7996a98ddb949db9f3b93225/pydantic_core-2.46.4-pp311-pypy311_pp73-win_amd64.whl", hash = "sha256:d51026d73fcfd93610abc7b27789c26b313920fcfb20e27462d74a7f8b06e983", size = 2193071, upload-time = "2026-05-06T13:38:08.682Z" },
+]
+
+[[package]]
+name = "pymodbus"
+version = "3.13.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c2/e4/68aa328d8c07583b1fe382f231d614bc1ebf3a86aa09db1a9c045c33c1df/pymodbus-3.13.1.tar.gz", hash = "sha256:7a74ea0a4eb4895f518b34de32915ba4fde216576e09deaf735a279a9281af4f", size = 166178, upload-time = "2026-06-13T17:02:09.885Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/df/84/cdd3f6af834dac9e3bfaeca1f37c4dbfd305943305670c48499950e4e1cd/pymodbus-3.13.1-py3-none-any.whl", hash = "sha256:820167a9c6a13d698d7ff49e8420f8fbbdd8fec3f75aacd46a35f4ab9a000144", size = 166529, upload-time = "2026-06-13T17:02:08.374Z" },
+]
+
+[[package]]
+name = "pyserial"
+version = "3.5"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/1e/7d/ae3f0a63f41e4d2f6cb66a5b57197850f919f59e558159a4dd3a818f5082/pyserial-3.5.tar.gz", hash = "sha256:3c77e014170dfffbd816e6ffc205e9842efb10be9f58ec16d3e8675b4925cddb", size = 159125, upload-time = "2020-11-23T03:59:15.045Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/07/bc/587a445451b253b285629263eb51c2d8e9bcea4fc97826266d186f96f558/pyserial-3.5-py2.py3-none-any.whl", hash = "sha256:c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0", size = 90585, upload-time = "2020-11-23T03:59:13.41Z" },
 ]
 
 [[package]]

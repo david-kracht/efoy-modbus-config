@@ -7,6 +7,8 @@ dependencies = [
     "modbus-config",
     "modbus-schema-common",
     "jinja2>=3.1.0",
+    "pymodbus>=3.13.1",
+    "minimalmodbus>=2.1.1",
 ]
 
 [tool.uv.sources]

@@ -28,18 +28,15 @@ _READ_FC = {
 }
 
 
-def _proto(schema_addr: int, address_mask: int) -> int:
-    """Convert 5-digit EFOY schema address to 0-based protocol address."""
-    return (schema_addr - 1) % address_mask if address_mask else schema_addr
 
 
-def read_register(instrument, reg_map: dict, name: str, address_mask: int):
+def read_register(instrument, reg_map: dict, name: str):
     """Read a register by name and return a decoded Python value.
 
     Applies the scale factor and resolves enum labels automatically.
     """
     reg = reg_map[name]
-    proto_addr = _proto(reg.address_dec, address_mask)
+    proto_addr = reg.protocol_address_dec
     raw = instrument.read_register(proto_addr, functioncode=_READ_FC[reg.register_type])
     enum_values = getattr(reg, "enum_values", None)
     scale_factor = getattr(reg, "scale_factor", 1.0)
@@ -48,12 +45,12 @@ def read_register(instrument, reg_map: dict, name: str, address_mask: int):
     return raw * scale_factor
 
 
-def write_holding_register(instrument, reg_map: dict, name: str, value: int, address_mask: int) -> None:
+def write_holding_register(instrument, reg_map: dict, name: str, value: int) -> None:
     """Write an integer value to a holding register (FC06)."""
     reg = reg_map[name]
     if reg.register_type != ModbusRegisterType.HOLDING_REGISTER:
         raise ValueError(f"{name} is not a holding register")
-    proto_addr = _proto(reg.address_dec, address_mask)
+    proto_addr = reg.protocol_address_dec
     instrument.write_register(proto_addr, value, functioncode=6)
 
 
@@ -94,11 +91,11 @@ def main() -> None:
         if name not in reg_map:
             print(f"  {name}: not found in schema (check schema version)")
             continue
-        value = read_register(instrument, reg_map, name, spec.address_mask)
+        value = read_register(instrument, reg_map, name)
         reg = reg_map[name]
         unit = f" {reg.unit}" if getattr(reg, "unit", None) else ""
         fc = _READ_FC[reg.register_type]
-        proto = _proto(reg.address_dec, spec.address_mask)
+        proto = reg.protocol_address_dec
         print(f"  {name:30s}  schema={reg.address_dec}  proto={proto}  fc={fc}  → {value}{unit}")
 
 

@@ -16,7 +16,7 @@ import minimalmodbus
 """
 
 _FUNC = """\
-def read_{{ reg.name }}(instrument: minimalmodbus.Instrument):
+def read_{{ reg.name | replace('-', '_') }}(instrument: minimalmodbus.Instrument):
     \"\"\"{{ reg.description | truncate(80, True, '...') }}
 
     Schema address : {{ reg.address_dec }} ({{ reg.address_hex }})
@@ -32,4 +32,47 @@ def read_{{ reg.name }}(instrument: minimalmodbus.Instrument):
     return raw{% if scale != 1.0 %} * {{ scale }}{% endif %}
     {%- endif %}
 
+"""
+
+_FOOTER = """\
+if __name__ == "__main__":
+    import argparse
+    from pymodbus.client import ModbusTcpClient
+
+    class TCPProxyInstrument:
+        \"\"\"Proxies MinimalModbus calls to pymodbus to test against the TCP simulator.\"\"\"
+        def __init__(self, host, port):
+            self.client = ModbusTcpClient(host=host, port=port)
+            self.client.connect()
+        
+        def read_register(self, address, number_of_decimals=0, functioncode=3, signed=False):
+            if functioncode == 4:
+                resp = self.client.read_input_registers(address=address, count=1)
+            else:
+                resp = self.client.read_holding_registers(address=address, count=1)
+            if resp.isError():
+                raise RuntimeError(f"Modbus Error reading address {address}")
+            return resp.registers[0]
+
+    parser = argparse.ArgumentParser(description="Test generated stubs against simulator")
+    parser.add_argument("--host", default="localhost")
+    parser.add_argument("--port", type=int, default=5025)
+    args = parser.parse_args()
+
+    print(f"Connecting to simulator at {args.host}:{args.port}...")
+    instrument = TCPProxyInstrument(args.host, args.port)
+
+    # Test some typical generated getter functions
+    # (These functions are guaranteed to exist in the 'all' or 'input_register' schema)
+    print("\\nTesting read_SystemState():")
+    val = read_SystemState(instrument)
+    print(f"-> Returned: {val}")
+
+    print("\\nTesting read_SystemType():")
+    val = read_SystemType(instrument)
+    print(f"-> Returned: {val}")
+
+    print("\\nTesting read_AssemblyDate():")
+    val = read_AssemblyDate(instrument)
+    print(f"-> Returned: {val}")
 """

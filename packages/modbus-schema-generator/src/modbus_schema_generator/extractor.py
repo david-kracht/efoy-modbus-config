@@ -397,10 +397,14 @@ def extract_enum_type_definitions(pdf_path: Path) -> list:
 
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
+            # Crop margins (header: top 50 points, footer: bottom 50 points) to avoid footer text
+            # being appended to enum values.
+            cropped_page = page.within_bbox((0, 50, page.width, page.height - 50))
+            
             # Reset last_key at every page boundary so footer text on one page
             # can never be appended to the last enum value of the previous page.
             last_key: int | None = None
-            for raw_line in (page.extract_text() or "").splitlines():
+            for raw_line in (cropped_page.extract_text() or "").splitlines():
                 line = raw_line.strip()
                 if not line:
                     continue

@@ -11,6 +11,7 @@ and can be run without activating any parent virtual environment.
 | 3 | [`03_mqtt_polling_plan/`](#3--build-a-modbusmqtt-polling-plan) | Build a JSON polling config for any MQTT bridge | no |
 | 4 | [`04_advantech_csv/`](#4--generate-an-advantech-modbus-to-mqtt-csv-config) | Render a full Advantech RouterApp CSV mapping | no |
 | 5 | [`05_generic_client_cli/`](#5--generic-modbus-tcp-client-and-cli) | Simplified dynamic client & Typer CLI using struct | optional |
+| 6 | [`06_telegraf_input_plugin/`](#6--generate-telegraf-modbus-config-via-jinja2) | Generate a Telegraf plugin config | no |
 
 ---
 

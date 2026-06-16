@@ -12,9 +12,6 @@ from modbus_schema_common.models import ModbusDataType, ModbusRegisterType
 from modbus_common.config import AppConfig
 
 
-def _proto(schema_addr: int, address_mask: int) -> int:
-    """Convert 5-digit EFOY schema address to 0-based protocol address."""
-    return (schema_addr - 1) % address_mask if address_mask else schema_addr
 
 def to_telegraf_type(data_type: ModbusDataType) -> str:
     mapping = {
@@ -96,7 +93,7 @@ def main():
                 groups[t_reg_type] = []
                 
             field = {
-                "address": _proto(reg.address_dec, spec.address_mask),
+                "address": reg.protocol_address_dec,
                 "name": reg.name,
                 "type": to_telegraf_type(reg.data_type),
                 "scale": getattr(reg, "scale_factor", None),

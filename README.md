@@ -47,7 +47,14 @@ Schemas are serialized as JSON. Key attributes of `ModbusInterfaceSpecification`
 - `firmware`: Targeted firmware version.
 - `byte_order`: Endianness of 16-bit words (`big` | `little`).
 - `word_order`: Endianness of 32/64-bit multi-register values (`big` | `little`).
+- `address_mask`: Divisor used to calculate the 0-based protocol address.
 - `registers`: List of registers (Coil, Discrete Input, Input, Holding).
+
+Each register within `registers` provides (among others):
+- `address_dec`: The 1-based decimal address from the manual.
+- `protocol_address_dec`: The 0-based protocol address used for Modbus queries (computed automatically at runtime).
+- `data_type`: Modbus data type (e.g. `uint16`, `float32`).
+- `access`: "RO", "RW", or "WO".
 
 ---
 
@@ -93,6 +100,7 @@ Complete, self-contained examples are available in the [./examples](./examples) 
 3. **[./03_mqtt_polling_plan](./examples/03_mqtt_polling_plan)**: Generate polling plans in JSON format for Modbus-to-MQTT bridges.
 4. **[./04_advantech_csv](./examples/04_advantech_csv)**: Generate Modbus-to-MQTT CSV mapping configs for Advantech routers.
 5. **[./05_generic_client_cli](./examples/05_generic_client_cli)**: A fully generic Modbus TCP client and Typer CLI built against the register schema using python `struct` serialization.
+6. **[./06_telegraf_input_plugin](./examples/06_telegraf_input_plugin)**: Generate a configuration file for the Telegraf `inputs.modbus` plugin with a dockerized simulator test stack.
 
 See [EXAMPLES.md](./examples/EXAMPLES.md) for detailed usage guides.
 

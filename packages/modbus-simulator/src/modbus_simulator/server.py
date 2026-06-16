@@ -20,24 +20,19 @@ async def run_server(schema_name: str, host: str, port: int):
     schema = resolve_schema(schema_name)
     logger.info("Simulating device: %s (Firmware: %s)", schema.device_name, schema.firmware or "Unknown")
 
-    def _proto(schema_addr: int) -> int:
-        """Schema address → 0-based protocol address via schema.address_mask."""
-        m = schema.address_mask
-        return (schema_addr - 1) % m if m else schema_addr
-
     di_vals = {}
     co_vals = {}
     ir_vals = {}
     hr_vals = {}
 
-    float_regs = {_proto(r.address_dec): r for r in schema.registers if r.data_type == ModbusDataType.FLOAT32 and r.register_type in (ModbusRegisterType.INPUT_REGISTER, ModbusRegisterType.HOLDING_REGISTER)}
-    int_regs = {_proto(r.address_dec): r for r in schema.registers if r.data_type in (ModbusDataType.INT16, ModbusDataType.UINT16, ModbusDataType.INT32, ModbusDataType.UINT32) and r.register_type in (ModbusRegisterType.INPUT_REGISTER, ModbusRegisterType.HOLDING_REGISTER)}
-    trigger_coils = {_proto(r.address_dec) for r in schema.registers if r.register_type == ModbusRegisterType.COIL and r.access == "WO"}
+    float_regs = {r.protocol_address_dec: r for r in schema.registers if r.data_type == ModbusDataType.FLOAT32 and r.register_type in (ModbusRegisterType.INPUT_REGISTER, ModbusRegisterType.HOLDING_REGISTER)}
+    int_regs = {r.protocol_address_dec: r for r in schema.registers if r.data_type in (ModbusDataType.INT16, ModbusDataType.UINT16, ModbusDataType.INT32, ModbusDataType.UINT32) and r.register_type in (ModbusRegisterType.INPUT_REGISTER, ModbusRegisterType.HOLDING_REGISTER)}
+    trigger_coils = {r.protocol_address_dec for r in schema.registers if r.register_type == ModbusRegisterType.COIL and r.access == "WO"}
 
     # Find min/max range for each register type to prevent gaps from being marked INVALID
     ranges = {}
     for reg in schema.registers:
-        addr = _proto(reg.address_dec)
+        addr = reg.protocol_address_dec
         rtype = reg.register_type
         count = getattr(reg, "register_count", 1)
         if rtype not in ranges:
@@ -100,11 +95,11 @@ async def run_server(schema_name: str, host: str, port: int):
             )
             target = ir_vals if rtype == ModbusRegisterType.INPUT_REGISTER else hr_vals
             for offset, w in enumerate(words):
-                target[_proto(reg.address_dec) + offset] = w
+                target[reg.protocol_address_dec + offset] = w
         else:
             # Coil / Discrete Input
             target = di_vals if rtype == ModbusRegisterType.DISCRETE_INPUT else co_vals
-            target[_proto(reg.address_dec)] = bool(mock_val)
+            target[reg.protocol_address_dec] = bool(mock_val)
 
     di_block = ModbusSparseDataBlock(di_vals)
     co_block = ModbusSparseDataBlock(co_vals)

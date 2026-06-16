@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class ModbusRegisterType(str, Enum):
@@ -34,6 +34,8 @@ class ModbusRegisterBase(BaseModel):
     register_count: int
     access: Literal["RO", "RW", "WO"]
     register_type: ModbusRegisterType
+    protocol_address_dec: Optional[int] = Field(default=None, exclude=True)  # Computed during load, not saved
+    protocol_address_hex: Optional[str] = Field(default=None, exclude=True)  # Computed during load, not saved
 
 
 class ModbusRegister(ModbusRegisterBase):
@@ -84,3 +86,13 @@ class ModbusInterfaceSpecification(BaseModel):
     # must be listed first so its extra fields are preserved.
     registers: list[ModbusRegister | ModbusRegisterBase] = Field(default_factory=list)
     enum_type_definitions: list[EnumTypeDefinition] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def compute_protocol_addresses(self) -> "ModbusInterfaceSpecification":
+        m = self.address_mask
+        for reg in self.registers:
+            if reg.protocol_address_dec is None:
+                addr = (reg.address_dec - 1) % m if m else reg.address_dec
+                reg.protocol_address_dec = addr
+                reg.protocol_address_hex = hex(addr)
+        return self

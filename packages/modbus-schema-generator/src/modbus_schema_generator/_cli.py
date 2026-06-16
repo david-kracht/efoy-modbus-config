@@ -37,7 +37,8 @@ _GENERATE_DEPS = ("pdfplumber", "httpx", "dotenv")
 # Try to resolve relative to workspace first (dev mode)
 _workspace_schemas = None
 for p in Path(__file__).resolve().parents:
-    candidate = p / f"packages/{PKG_NAME}/src/{PKG_NAME.lower()}/schemas"
+    module_name = PKG_NAME.lower().replace("-", "_")
+    candidate = p / f"packages/{PKG_NAME}/src/{module_name}/schemas"
     if candidate.exists():
         _workspace_schemas = candidate
         break
