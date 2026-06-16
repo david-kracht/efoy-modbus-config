@@ -1,6 +1,6 @@
 # Modbus Config
 
-The `modbus-config` package serves as the central schema registry for EFOY device configurations. It provides a versioned registry of Modbus interface specifications.
+The `modbus-config` package serves as the central schema registry for device configurations. It provides a versioned registry of Modbus interface specifications.
 
 ## Purpose
 

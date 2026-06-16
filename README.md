@@ -87,14 +87,14 @@ for reg in spec.registers:
 
 ## Runnable Examples
 
-Complete, self-contained examples are available in the [examples/](file:///home/david/git/efoy-modbus-config/examples/) directory:
-1. **[01_minimalmodbus/](file:///home/david/git/efoy-modbus-config/examples/01_minimalmodbus/)**: Look up registers by name, decode with scaling and enums.
-2. **[02_codegen_jinja2/](file:///home/david/git/efoy-modbus-config/examples/02_codegen_jinja2/)**: Generate python getter functions with Jinja2 templates (zero runtime dependencies).
-3. **[03_mqtt_polling_plan/](file:///home/david/git/efoy-modbus-config/examples/03_mqtt_polling_plan/)**: Generate polling plans in JSON format for Modbus-to-MQTT bridges.
-4. **[04_advantech_csv/](file:///home/david/git/efoy-modbus-config/examples/04_advantech_csv/)**: Generate Modbus-to-MQTT CSV mapping configs for Advantech routers.
-5. **[05_generic_client_cli/](file:///home/david/git/efoy-modbus-config/examples/05_generic_client_cli/)**: A fully generic Modbus TCP client and Typer CLI built against the register schema using python `struct` serialization.
+Complete, self-contained examples are available in the [./examples](./examples) directory:
+1. **[./01_minimalmodbus](./examples/01_minimalmodbus)**: Look up registers by name, decode with scaling and enums.
+2. **[./02_codegen_jinja2](./examples/02_codegen_jinja2)**: Generate python getter functions with Jinja2 templates (zero runtime dependencies).
+3. **[./03_mqtt_polling_plan](./examples/03_mqtt_polling_plan)**: Generate polling plans in JSON format for Modbus-to-MQTT bridges.
+4. **[./04_advantech_csv](./examples/04_advantech_csv)**: Generate Modbus-to-MQTT CSV mapping configs for Advantech routers.
+5. **[./05_generic_client_cli](./examples/05_generic_client_cli)**: A fully generic Modbus TCP client and Typer CLI built against the register schema using python `struct` serialization.
 
-See [EXAMPLES.md](file:///home/david/git/efoy-modbus-config/examples/EXAMPLES.md) for detailed usage guides.
+See [EXAMPLES.md](./examples/EXAMPLES.md) for detailed usage guides.
 
 ---
 

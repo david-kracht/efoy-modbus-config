@@ -27,6 +27,8 @@ import re
 import sys
 from pathlib import Path
 
+from modbus_schema_generator.config import PKG_NAME
+
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
@@ -35,7 +37,7 @@ _GENERATE_DEPS = ("pdfplumber", "httpx", "dotenv")
 # Try to resolve relative to workspace first (dev mode)
 _workspace_schemas = None
 for p in Path(__file__).resolve().parents:
-    candidate = p / "packages/efoy-modbus/src/efoy_modbus/schemas"
+    candidate = p / f"packages/{PKG_NAME}/src/{PKG_NAME.lower()}/schemas"
     if candidate.exists():
         _workspace_schemas = candidate
         break

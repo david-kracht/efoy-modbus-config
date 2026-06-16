@@ -1,7 +1,7 @@
 [project]
 name = "modbus-config"
 version = "1.1.0"
-description = "EFOY Fuel Cell specific Modbus schemas"
+description = "The Modbus Schema"
 requires-python = ">=3.11"
 dependencies = [
     "modbus-schema-common>=1.0.0",

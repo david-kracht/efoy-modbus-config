@@ -14,7 +14,7 @@ The schema ecosystem uses a decoupled, dynamic "Drop-In" plugin architecture pow
 
 ### Schema Resolution
 
-The Control Repository (e.g. `modbus-ctrl-center`, `modbus-sim`) is entirely decoupled from specific schema versions or file paths. It operates exclusively using abstract identifiers like `modbus_config/latest` or `efoy/v10`.
+The Control Repository (e.g. `modbus-ctrl-center`, `modbus-sim`) is entirely decoupled from specific schema versions or file paths. It operates exclusively using abstract identifiers like `modbus_config/latest` or `device/v10`.
 
 When an identifier is requested, the resolver within this package:
 1. Parses the string into a package name (`modbus_config`) and a version (`latest`).
@@ -26,10 +26,10 @@ When an identifier is requested, the resolver within this package:
 
 This package acts as a registry manager but **does not hardcode** any specific schema packages. Instead, it discovers them dynamically at runtime.
 
-Any schema package (e.g. `modbus-config`, `efoy`) simply declares a Python Entry Point in its `pyproject.toml`:
+Any schema package (e.g. `modbus-config`, `device`) simply declares a Python Entry Point in its `pyproject.toml`:
 ```toml
 [project.entry-points."modbus.schema"]
-modbus_config = "modbus_config"
+device = "device"
 ```
 
 When `get_available_schemas()` is called, `importlib.metadata` scans the entire Python environment for packages claiming the `modbus.schema` group. 

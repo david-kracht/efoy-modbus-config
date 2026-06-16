@@ -1,7 +1,7 @@
 {
   "device_name": "EFOY Fuel Cell",
   "version": "23.07",
-  "source_url": "26_02_Modbus_TCP.pdf",
+  "source_url": "23_07_Modbus_TCP.pdf",
   "firmware": "24.14.284",
   "byte_order": "big",
   "word_order": "little",
