@@ -1,7 +1,29 @@
+import logging
+import os
 import yaml
+from importlib.resources import files
 from pathlib import Path
 from typing import Optional, Any
 from pydantic import BaseModel, Field, model_validator, model_serializer, ValidationError
+
+logger = logging.getLogger(__name__)
+
+
+def get_devices_yaml_path() -> Path:
+    """Return resolved path to devices.yaml.
+
+    If the file does not exist, copies the bundled template from package
+    resources and logs a warning.
+    """
+    path = Path(os.getenv("MODBUS_DEVICES_YAML", "devices.yaml")).resolve()
+    if not path.exists():
+        template = files("modbus_common.resources").joinpath("devices.yaml")
+        path.write_bytes(template.read_bytes())
+        logger.warning(
+            "No devices.yaml found — created default template at %s", path
+        )
+    return path
+
 
 class DeviceConfig(BaseModel):
     name: Optional[str] = Field(None, description="Unique name of the Modbus device")

@@ -16,6 +16,7 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/modbus_common"]
+include = ["src/modbus_common/resources/devices.yaml"]
 
 [tool.uv.sources]
 modbus-schema-common = { workspace = true }
