@@ -2,10 +2,10 @@
 name = "modbus-common"
 version = "0.1.0"
 description = "Common Modbus utilities (translator, aggregator, client wrapper)"
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 dependencies = [
     "modbus-schema-common",
-    "pymodbus>=3.8.0",
+    "pymodbus>=3.5.0",
     "pydantic>=2.0",
     "pyyaml>=6.0.0",
 ]
@@ -23,5 +23,5 @@ modbus-schema-common = { workspace = true }
 
 [dependency-groups]
 dev = [
-    "pytest>=9.1.0",
+    "pytest>=7.4.4",
 ]

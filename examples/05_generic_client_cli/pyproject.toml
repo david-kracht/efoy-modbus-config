@@ -2,12 +2,12 @@
 name = "example-05-generic-client-cli"
 version = "0.1.0"
 description = "A simplified, generic Modbus TCP client and CLI built against the registry schema interface"
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 dependencies = [
     "modbus-config",
     "modbus-schema-common",
     "modbus-simulator",
-    "pymodbus>=3.8.0",
+    "pymodbus>=3.5.0",
     "typer>=0.12.0",
 ]
 

@@ -1,3 +1,4 @@
+from __future__ import annotations
 import pytest
 from modbus_schema_common.models import ModbusDataType
 from modbus_common.translator import pack_register_value, unpack_register_value

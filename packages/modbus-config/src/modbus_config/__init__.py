@@ -1,3 +1,4 @@
+from __future__ import annotations
 from modbus_config.registry import latest, load, versions, latest_version
 
 __all__ = [

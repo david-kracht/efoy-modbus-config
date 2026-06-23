@@ -2,12 +2,12 @@
 name = "example-02-codegen-jinja2"
 version = "0.1.0"
 description = "Generate typed MinimalModbus getter functions from the EFOY schema"
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 dependencies = [
     "modbus-config",
     "modbus-schema-common",
     "jinja2>=3.1.0",
-    "pymodbus>=3.13.1",
+    "pymodbus>=3.5.0",
     "minimalmodbus>=2.1.1",
 ]
 

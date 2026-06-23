@@ -1,3 +1,4 @@
+from __future__ import annotations
 from .translator import pack_register_value, unpack_register_value
 from .aggregator import build_read_blocks, ReadBlock
 from .client import ModbusClientWrapper

@@ -2,7 +2,7 @@
 name = "example-01-minimalmodbus"
 version = "0.1.0"
 description = "Read EFOY registers by name with MinimalModbus"
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 dependencies = [
     "modbus-config",
     "modbus-schema-common",

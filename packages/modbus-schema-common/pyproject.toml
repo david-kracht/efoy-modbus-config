@@ -2,7 +2,7 @@
 name = "modbus-schema-common"
 version = "1.0.0"
 description = "Generic Modbus TCP register schema validation models and registry"
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 dependencies = [
     "pydantic>=2.0.0",
 ]

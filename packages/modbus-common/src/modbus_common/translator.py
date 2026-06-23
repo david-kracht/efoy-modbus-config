@@ -1,3 +1,4 @@
+from __future__ import annotations
 import struct
 from typing import Any
 from modbus_schema_common.models import ModbusDataType

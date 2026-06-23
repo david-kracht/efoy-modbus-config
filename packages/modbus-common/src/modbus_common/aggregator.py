@@ -1,3 +1,4 @@
+from __future__ import annotations
 import logging
 from typing import TypedDict, Any
 from modbus_schema_common.models import ModbusRegisterBase, ModbusRegisterType

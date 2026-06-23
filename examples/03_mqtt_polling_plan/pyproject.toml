@@ -2,7 +2,7 @@
 name = "example-03-mqtt-polling-plan"
 version = "0.1.0"
 description = "Build a Modbus→MQTT polling plan from the EFOY schema"
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 dependencies = [
     "modbus-config",
     "modbus-schema-common",

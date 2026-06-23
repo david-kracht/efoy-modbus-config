@@ -1,3 +1,4 @@
+from __future__ import annotations
 from modbus_schema_common.models import ModbusRegister, ModbusRegisterType, ModbusDataType
 from modbus_common.aggregator import build_read_blocks
 

@@ -1,3 +1,4 @@
+from __future__ import annotations
 from modbus_schema_common.models import (
     EnumTypeDefinition,
     ModbusDataType,

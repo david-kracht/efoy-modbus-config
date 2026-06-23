@@ -2,7 +2,7 @@
 name = "example-04-advantech-csv"
 version = "0.1.0"
 description = "Generate Advantech Modbus-to-MQTT CSV config from the EFOY schema"
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 dependencies = [
     "modbus-config",
     "modbus-schema-common",

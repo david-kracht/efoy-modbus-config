@@ -1,3 +1,4 @@
+from __future__ import annotations
 import logging
 from pathlib import Path
 from modbus_schema_common.models import ModbusInterfaceSpecification
