@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 import re
-from importlib.resources import files
+import sys
+if sys.version_info < (3, 9):
+    from importlib_resources import files
+else:
+    from importlib.resources import files
 from typing import Any, TYPE_CHECKING
 
 if TYPE_CHECKING:

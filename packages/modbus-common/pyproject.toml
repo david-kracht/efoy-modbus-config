@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "Common Modbus utilities (translator, aggregator, client wrapper)"
 requires-python = ">=3.8"
 dependencies = [
+    "importlib-resources; python_version < '3.9'",
+    "eval-type-backport; python_version < '3.10'",
     "modbus-schema-common",
     "pymodbus>=3.5.0",
     "pydantic>=2.0",

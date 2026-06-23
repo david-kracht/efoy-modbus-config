@@ -2,7 +2,11 @@ from __future__ import annotations
 import logging
 import os
 import yaml
-from importlib.resources import files
+import sys
+if sys.version_info < (3, 9):
+    from importlib_resources import files
+else:
+    from importlib.resources import files
 from pathlib import Path
 from typing import Optional, Any
 from pydantic import BaseModel, Field, model_validator, model_serializer, ValidationError

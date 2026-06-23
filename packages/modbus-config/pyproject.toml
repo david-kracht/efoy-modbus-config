@@ -4,6 +4,7 @@ version = "1.1.0"
 description = "The Modbus Schema"
 requires-python = ">=3.8"
 dependencies = [
+    "importlib-resources; python_version < '3.9'",
     "modbus-schema-common>=1.0.0",
 ]
 
